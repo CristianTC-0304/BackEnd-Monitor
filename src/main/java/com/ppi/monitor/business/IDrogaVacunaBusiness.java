@@ -6,6 +6,7 @@
 package com.ppi.monitor.business;
 
 import com.ppi.monitor.model.DrogaVacuna;
+import com.ppi.monitor.model.Presentacion;
 import java.util.List;
 
 /**
@@ -15,6 +16,7 @@ import java.util.List;
 public interface IDrogaVacunaBusiness {
 
     List<DrogaVacuna> listaVacunas();
+    List<Presentacion> listaPresentacion();
 
     void crearVacuna(DrogaVacuna vacuna);
     

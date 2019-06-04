@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author 57314
  */
 @RestController
+@RequestMapping (value = "/monitor")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT})
 public class TipoAlimentoController {
 

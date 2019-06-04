@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author 57314
  */
 @RestController
+@RequestMapping (value = "/monitor")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT})
 public class PrecioAlimentoController {
 
@@ -46,12 +47,13 @@ public class PrecioAlimentoController {
     public String crearAlimento(@RequestBody PrecioAlimento alimento) {
         try {
             precioAlimentoBusiness.crearAlimento(alimento);
-            mensaje = "Información de alimento guardada.";
+            mensaje = "{\"estado\":\"Información de alimento guardada.\"}";
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Error guardando alimento");
         }
         return mensaje;
     }
+
 
 }

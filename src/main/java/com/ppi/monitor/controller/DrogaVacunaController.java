@@ -9,6 +9,8 @@ import com.ppi.monitor.business.IDrogaVacunaBusiness;
 import com.ppi.monitor.model.DrogaVacuna;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.ppi.monitor.model.Presentacion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author 57314
  */
 @RestController
+@RequestMapping (value = "/monitor")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT})
 public class DrogaVacunaController {
 
@@ -42,12 +45,24 @@ public class DrogaVacunaController {
         return list;
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/presentacion")
+    public List<Presentacion> listaPresentacion() {
+        List<Presentacion> list = new ArrayList<>();
+        try {
+            list = drogaVacunaBusiness.listaPresentacion();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error listando las vacunas");
+        }
+        return list;
+    }
+
     @RequestMapping(method = RequestMethod.POST, value = "/vacuna")
     public String crearVacuna(@RequestBody DrogaVacuna vacuna) {
 
         try {
             drogaVacunaBusiness.crearVacuna(vacuna);
-            mensaje = "Información de alimento guardada.";
+            mensaje = "{\"mensaje\":\"Información de alimento guardada.\"}";
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Error guardando vacuna");

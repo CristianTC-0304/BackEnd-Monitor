@@ -11,6 +11,8 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+
+import com.ppi.monitor.model.Presentacion;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -26,6 +28,11 @@ public class DrogaVacunaDAOImplement implements IDrogaVacunaDAO {
     @Override
     public List<DrogaVacuna> listaVacunas() {
         return entityManager.createQuery("SELECT d FROM DrogaVacuna d", DrogaVacuna.class).getResultList();
+    }
+
+    @Override
+    public List<Presentacion> listaPresentacion() {
+        return entityManager.createQuery("SELECT p FROM Presentacion p", Presentacion.class).getResultList();
     }
 
     @Override

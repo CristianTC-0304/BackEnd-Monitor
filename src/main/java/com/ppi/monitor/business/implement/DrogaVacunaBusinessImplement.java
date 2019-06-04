@@ -8,6 +8,7 @@ package com.ppi.monitor.business.implement;
 import com.ppi.monitor.business.IDrogaVacunaBusiness;
 import com.ppi.monitor.dao.IDrogaVacunaDAO;
 import com.ppi.monitor.model.DrogaVacuna;
+import com.ppi.monitor.model.Presentacion;
 import com.ppi.monitor.util.StringUtil;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +30,18 @@ public class DrogaVacunaBusinessImplement implements IDrogaVacunaBusiness {
         List<DrogaVacuna> list = new ArrayList<>();
         try {
             list = drogaVacunaDAO.listaVacunas();
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return list;
+    }
+
+    @Override
+    public List<Presentacion> listaPresentacion() {
+        List<Presentacion> list = new ArrayList<>();
+        try {
+            list = drogaVacunaDAO.listaPresentacion();
         } catch (Exception e) {
             e.printStackTrace();
 

@@ -6,6 +6,8 @@
 package com.ppi.monitor.dao;
 
 import com.ppi.monitor.model.DrogaVacuna;
+import com.ppi.monitor.model.Presentacion;
+
 import java.util.List;
 
 /**
@@ -15,6 +17,7 @@ import java.util.List;
 public interface IDrogaVacunaDAO {
 
     List<DrogaVacuna> listaVacunas();
+    List<Presentacion> listaPresentacion();
 
     void crearVacuna(DrogaVacuna vacuna);
 
