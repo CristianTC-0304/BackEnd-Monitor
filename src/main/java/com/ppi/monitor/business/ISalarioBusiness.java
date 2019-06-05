@@ -17,5 +17,5 @@ public interface ISalarioBusiness {
     public List<Salario> listaSalario();
 
     void guardarSalario(Salario salario);
-
+    void cambiarEstadoSalario(int idSalario);
 }

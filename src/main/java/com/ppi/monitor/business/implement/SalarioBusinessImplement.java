@@ -55,4 +55,14 @@ public class SalarioBusinessImplement implements ISalarioBusiness {
         }
     }
 
+    @Override
+    public void cambiarEstadoSalario(int idSalario) {
+        Salario alimento = salarioDAO.buscarSalario(idSalario);
+        alimento.setEstado(0);
+        try {
+            salarioDAO.actualizarSalario(alimento);
+        } catch (Exception e) {
+        }
+    }
+
 }

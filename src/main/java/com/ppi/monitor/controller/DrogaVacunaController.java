@@ -74,7 +74,8 @@ public class DrogaVacunaController {
     public String cambiarEstadoVacuna(@PathVariable("idDrogaVacuna") int idDrogaVacuna) {
         try {
             drogaVacunaBusiness.cambiarEstadoVacuna(idDrogaVacuna);
-            mensaje = "infromación de alimento actualizado.";
+           // mensaje = "infromación de alimento actualizado.";
+            mensaje = "{\"mensaje\":\"infromación de vacuna actualizado.\"}";
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Error eliminando vacuna");

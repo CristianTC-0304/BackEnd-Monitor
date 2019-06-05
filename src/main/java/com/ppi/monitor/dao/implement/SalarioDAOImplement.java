@@ -40,4 +40,9 @@ public class SalarioDAOImplement implements ISalarioDAO {
         entityManager.merge(salario);
     }
 
+    @Override
+    public Salario buscarSalario(int idSalario) {
+        return entityManager.find(Salario.class, idSalario);
+    }
+
 }
