@@ -26,6 +26,7 @@ public class PersonalDAOImplement implements IPersonalDAO {
 
     @Override
     public List<Personal> listaPersonal() {
+
         return entityManager.createQuery("SELECT p FROM Personal p", Personal.class).getResultList();
     }
 

@@ -38,13 +38,14 @@ public class PersonalBusinessImplement implements IPersonalBusiness {
 
     @Override
     public void crearPersonal(Personal personal) {
-
+    Personal persona = personal;
         try {
             if (StringUtil.isNullOrEmpty(personal.getIdPersonal())) {
-                personal.setEstado(1);
-                personalDAO.crearPersonal(personal);
+               persona.setClave(personal.getDocumento().toString());
+                persona.setEstado(1);
+                personalDAO.crearPersonal(persona);
             } else {
-                personalDAO.actualizarPersonal(personal);
+                personalDAO.actualizarPersonal(persona);
             }
         } catch (Exception e) {
             e.printStackTrace();

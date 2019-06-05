@@ -46,7 +46,7 @@ public class PersonalController {
     public String crearPersonal(@RequestBody Personal personal) {
         try {
             personalBusiness.crearPersonal(personal);
-            mensaje = "Información personal guardado.";
+            mensaje = "{\"mensaje\":\"Persona guardado correctamente.\"}";
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Error guardando personal");
@@ -71,7 +71,7 @@ public class PersonalController {
 
         try {
             personalBusiness.actaulizarEstado(idPersonal);
-            mensaje = "Personal actualizado.";
+            mensaje = "{\"mensaje\":\"Personal actualizado.\"}";
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Error eliminando personal");
