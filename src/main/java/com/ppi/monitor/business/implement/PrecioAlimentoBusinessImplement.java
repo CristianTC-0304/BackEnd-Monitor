@@ -7,6 +7,7 @@ package com.ppi.monitor.business.implement;
 
 import com.ppi.monitor.business.IPrecioAlimentoBusiness;
 import com.ppi.monitor.dao.IPrecioAlimentoDAO;
+import com.ppi.monitor.model.DrogaVacuna;
 import com.ppi.monitor.model.PrecioAlimento;
 import com.ppi.monitor.util.StringUtil;
 import java.util.ArrayList;
@@ -47,6 +48,16 @@ public class PrecioAlimentoBusinessImplement implements IPrecioAlimentoBusiness 
 
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void cambiarEstadoAlimento(int idPrecioAlimento) {
+        PrecioAlimento alimento = precioAlimentoDAO.buscarAlimento(idPrecioAlimento);
+        alimento.setEstado(0);
+        try {
+            precioAlimentoDAO.actualizarAlimento(alimento);
+        } catch (Exception e) {
         }
     }
 

@@ -40,4 +40,8 @@ public class PrecioAlimentoDAOImplement implements IPrecioAlimentoDAO {
         entityManager.merge(alimento);
     }
 
+    @Override
+    public PrecioAlimento buscarAlimento(int idPrecioAlimento) {
+        return entityManager.find(PrecioAlimento.class, idPrecioAlimento);
+    }
 }

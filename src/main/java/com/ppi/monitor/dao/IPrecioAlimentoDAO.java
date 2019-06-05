@@ -19,5 +19,7 @@ public interface IPrecioAlimentoDAO {
     void crearAlimento(PrecioAlimento alimento);
 
     void actualizarAlimento(PrecioAlimento alimento);
+
+    PrecioAlimento buscarAlimento(int idPrecioAlimento);
     
 }

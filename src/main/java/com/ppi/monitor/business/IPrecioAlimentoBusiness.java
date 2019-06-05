@@ -18,4 +18,7 @@ public interface IPrecioAlimentoBusiness {
 
     void crearAlimento(PrecioAlimento alimento);
 
+    // void actualizarAlimento(int idPrecioAlimento);
+
+    void cambiarEstadoAlimento(int idPrecioAlimento);
 }

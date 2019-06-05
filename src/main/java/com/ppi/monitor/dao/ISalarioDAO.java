@@ -20,4 +20,5 @@ public interface ISalarioDAO {
 
     void actualizarSalario(Salario salario);
 
+    Salario buscarSalario(int idSalario);
 }

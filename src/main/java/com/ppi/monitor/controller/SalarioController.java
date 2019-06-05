@@ -10,17 +10,14 @@ import com.ppi.monitor.model.Salario;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  *
  * @author andreshincapie
  */
 @RestController
+@RequestMapping (value = "/monitor")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT})
 public class SalarioController {
 
@@ -45,10 +42,22 @@ public class SalarioController {
     public String guardarSalario(@RequestBody Salario salario) {
         try {
             salarioBusiness.guardarSalario(salario);
-             mensaje = "Información de salario guardado.";
+             mensaje = "{\"estado\":\"Información de salario guardada.\"}";
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Error guardando salarios.");
+        }
+        return mensaje;
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/salario/{idSalario}")
+    public String cambiarEstadoAlimento(@PathVariable("idSalario") int idSalario) {
+        try {
+            salarioBusiness.cambiarEstadoSalario(idSalario);
+            mensaje = "{\"mensaje\":\"infromación de salario actualizado.\"}";
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error eliminando vacuna");
         }
         return mensaje;
     }
