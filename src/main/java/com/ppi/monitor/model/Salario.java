@@ -53,7 +53,7 @@ public class Salario implements Serializable {
     private BigDecimal prestacionesSociales;
     @Basic(optional = false)
     @Column(name = "periodo")
-    private int periodo;
+    private String periodo;
     @Basic(optional = false)
     @Column(name = "estado")
     private int estado;
@@ -65,7 +65,7 @@ public class Salario implements Serializable {
         this.idsalario = idsalario;
     }
 
-    public Salario(Integer idsalario, BigDecimal salario, BigDecimal auxilioTransporte, BigDecimal prestacionesSociales, int periodo, int estado) {
+    public Salario(Integer idsalario, BigDecimal salario, BigDecimal auxilioTransporte, BigDecimal prestacionesSociales, String periodo, int estado) {
         this.idsalario = idsalario;
         this.salario = salario;
         this.auxilioTransporte = auxilioTransporte;
@@ -106,11 +106,11 @@ public class Salario implements Serializable {
         this.prestacionesSociales = prestacionesSociales;
     }
 
-    public int getPeriodo() {
+    public String getPeriodo() {
         return periodo;
     }
 
-    public void setPeriodo(int periodo) {
+    public void setPeriodo(String periodo) {
         this.periodo = periodo;
     }
 

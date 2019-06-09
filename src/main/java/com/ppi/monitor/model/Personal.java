@@ -37,7 +37,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Personal.findByCelular", query = "SELECT p FROM Personal p WHERE p.celular = :celular")
     , @NamedQuery(name = "Personal.findByDireccion", query = "SELECT p FROM Personal p WHERE p.direccion = :direccion")
     , @NamedQuery(name = "Personal.findByCorreoElectronico", query = "SELECT p FROM Personal p WHERE p.correoElectronico = :correoElectronico")
-    , @NamedQuery(name = "Personal.findByClave", query = "SELECT p FROM Personal p WHERE p.clave = :clave")
+   
     , @NamedQuery(name = "Personal.findByEstado", query = "SELECT p FROM Personal p WHERE p.estado = :estado")
     , @NamedQuery(name = "Personal.findByDocumento", query = "SELECT p FROM Personal p WHERE p.documento = :documento")})
 public class Personal implements Serializable {
@@ -69,9 +69,7 @@ public class Personal implements Serializable {
     @Basic(optional = false)
     @Column(name = "correo_electronico")
     private String correoElectronico;
-    @Basic(optional = false)
-    @Column(name = "clave")
-    private String clave;
+   
     @Basic(optional = false)
     @Column(name = "estado")
     private int estado;
@@ -101,8 +99,7 @@ public class Personal implements Serializable {
         this.celular = celular;
         this.direccion = direccion;
         this.correoElectronico = correoElectronico;
-        this.clave = clave;
-        this.estado = estado;
+         this.estado = estado;
     }
 
     public Integer getIdPersonal() {
@@ -175,14 +172,6 @@ public class Personal implements Serializable {
 
     public void setCorreoElectronico(String correoElectronico) {
         this.correoElectronico = correoElectronico;
-    }
-
-    public String getClave() {
-        return clave;
-    }
-
-    public void setClave(String clave) {
-        this.clave = clave;
     }
 
     public int getEstado() {

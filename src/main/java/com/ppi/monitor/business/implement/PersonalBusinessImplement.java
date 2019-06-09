@@ -41,7 +41,7 @@ public class PersonalBusinessImplement implements IPersonalBusiness {
     Personal persona = personal;
         try {
             if (StringUtil.isNullOrEmpty(personal.getIdPersonal())) {
-               persona.setClave(personal.getDocumento().toString());
+               
                 persona.setEstado(1);
                 personalDAO.crearPersonal(persona);
             } else {
