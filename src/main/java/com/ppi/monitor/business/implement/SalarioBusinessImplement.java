@@ -43,8 +43,8 @@ public class SalarioBusinessImplement implements ISalarioBusiness {
         Salario salarioActual = salario;
         try {
             if (StringUtil.isNullOrEmpty(salario.getIdsalario())) {
-                
                 salarioActual.setEstado(1);
+                salarioActual.setPeriodo(salario.getPeriodo().substring(0, 4));
                 salarioDAO.crearSalario(salarioActual);
             } else {
                 salarioDAO.actualizarSalario(salario);
