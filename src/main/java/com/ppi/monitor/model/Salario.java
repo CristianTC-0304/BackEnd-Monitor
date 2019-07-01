@@ -144,7 +144,7 @@ public class Salario implements Serializable {
 
     @Override
     public String toString() {
-        return "co.ppi.monitor.model.Salario[ idsalario=" + idsalario + " ]";
+        return "javaapplication7.Salario[ idsalario=" + idsalario + " ]";
     }
     
 }

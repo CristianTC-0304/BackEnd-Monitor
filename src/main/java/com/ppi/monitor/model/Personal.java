@@ -6,6 +6,7 @@
 package com.ppi.monitor.model;
 
 import java.io.Serializable;
+import java.math.BigInteger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,6 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Personal.findAll", query = "SELECT p FROM Personal p")
     , @NamedQuery(name = "Personal.findByIdPersonal", query = "SELECT p FROM Personal p WHERE p.idPersonal = :idPersonal")
+    , @NamedQuery(name = "Personal.findByDocumento", query = "SELECT p FROM Personal p WHERE p.documento = :documento")
     , @NamedQuery(name = "Personal.findByPrimerNombre", query = "SELECT p FROM Personal p WHERE p.primerNombre = :primerNombre")
     , @NamedQuery(name = "Personal.findBySegundoNombre", query = "SELECT p FROM Personal p WHERE p.segundoNombre = :segundoNombre")
     , @NamedQuery(name = "Personal.findByPrimerApellido", query = "SELECT p FROM Personal p WHERE p.primerApellido = :primerApellido")
@@ -37,9 +39,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Personal.findByCelular", query = "SELECT p FROM Personal p WHERE p.celular = :celular")
     , @NamedQuery(name = "Personal.findByDireccion", query = "SELECT p FROM Personal p WHERE p.direccion = :direccion")
     , @NamedQuery(name = "Personal.findByCorreoElectronico", query = "SELECT p FROM Personal p WHERE p.correoElectronico = :correoElectronico")
-   
-    , @NamedQuery(name = "Personal.findByEstado", query = "SELECT p FROM Personal p WHERE p.estado = :estado")
-    , @NamedQuery(name = "Personal.findByDocumento", query = "SELECT p FROM Personal p WHERE p.documento = :documento")})
+    , @NamedQuery(name = "Personal.findByEstado", query = "SELECT p FROM Personal p WHERE p.estado = :estado")})
 public class Personal implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -48,6 +48,8 @@ public class Personal implements Serializable {
     @Basic(optional = false)
     @Column(name = "id_personal")
     private Integer idPersonal;
+    @Column(name = "documento")
+    private BigInteger documento;
     @Basic(optional = false)
     @Column(name = "primer_nombre")
     private String primerNombre;
@@ -59,22 +61,19 @@ public class Personal implements Serializable {
     @Column(name = "segundo_apellido")
     private String segundoApellido;
     @Column(name = "telefono")
-    private String telefono;
+    private Integer telefono;
     @Basic(optional = false)
     @Column(name = "celular")
-    private String celular;
+    private int celular;
     @Basic(optional = false)
     @Column(name = "direccion")
     private String direccion;
     @Basic(optional = false)
     @Column(name = "correo_electronico")
     private String correoElectronico;
-   
     @Basic(optional = false)
     @Column(name = "estado")
     private int estado;
-    @Column(name = "documento")
-    private Integer documento;
     @JoinColumn(name = "id_cargo", referencedColumnName = "id_cargo")
     @ManyToOne(optional = false)
     private Cargo idCargo;
@@ -92,14 +91,14 @@ public class Personal implements Serializable {
         this.idPersonal = idPersonal;
     }
 
-    public Personal(Integer idPersonal, String primerNombre, String primerApellido, String celular, String direccion, String correoElectronico, String clave, int estado) {
+    public Personal(Integer idPersonal, String primerNombre, String primerApellido, int celular, String direccion, String correoElectronico, int estado) {
         this.idPersonal = idPersonal;
         this.primerNombre = primerNombre;
         this.primerApellido = primerApellido;
         this.celular = celular;
         this.direccion = direccion;
         this.correoElectronico = correoElectronico;
-         this.estado = estado;
+        this.estado = estado;
     }
 
     public Integer getIdPersonal() {
@@ -108,6 +107,14 @@ public class Personal implements Serializable {
 
     public void setIdPersonal(Integer idPersonal) {
         this.idPersonal = idPersonal;
+    }
+
+    public BigInteger getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(BigInteger documento) {
+        this.documento = documento;
     }
 
     public String getPrimerNombre() {
@@ -142,19 +149,19 @@ public class Personal implements Serializable {
         this.segundoApellido = segundoApellido;
     }
 
-    public String getTelefono() {
+    public Integer getTelefono() {
         return telefono;
     }
 
-    public void setTelefono(String telefono) {
+    public void setTelefono(Integer telefono) {
         this.telefono = telefono;
     }
 
-    public String getCelular() {
+    public int getCelular() {
         return celular;
     }
 
-    public void setCelular(String celular) {
+    public void setCelular(int celular) {
         this.celular = celular;
     }
 
@@ -180,14 +187,6 @@ public class Personal implements Serializable {
 
     public void setEstado(int estado) {
         this.estado = estado;
-    }
-
-    public Integer getDocumento() {
-        return documento;
-    }
-
-    public void setDocumento(Integer documento) {
-        this.documento = documento;
     }
 
     public Cargo getIdCargo() {
@@ -236,7 +235,7 @@ public class Personal implements Serializable {
 
     @Override
     public String toString() {
-        return "co.ppi.monitor.model.Personal[ idPersonal=" + idPersonal + " ]";
+        return "javaapplication7.Personal[ idPersonal=" + idPersonal + " ]";
     }
     
 }

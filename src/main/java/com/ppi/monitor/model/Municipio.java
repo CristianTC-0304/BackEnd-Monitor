@@ -7,7 +7,9 @@ package com.ppi.monitor.model;
 
 import com.ppi.monitor.DTO.MunicipioDTO;
 import java.io.Serializable;
+import java.util.Collection;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,8 +19,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -30,8 +34,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Municipio.findAll", query = "SELECT m FROM Municipio m")
     , @NamedQuery(name = "Municipio.findByIdMunicipio", query = "SELECT m FROM Municipio m WHERE m.idMunicipio = :idMunicipio")
-    , @NamedQuery(name = "Municipio.findByMunicipio", query = "SELECT m FROM Municipio m WHERE m.municipio = :municipio")
-    , @NamedQuery(name = "Municipio.findByEstado", query = "SELECT m FROM Municipio m WHERE m.estado = :estado")})
+    , @NamedQuery(name = "Municipio.findByMunicipio", query = "SELECT m FROM Municipio m WHERE m.municipio = :municipio")})
 public class Municipio implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,12 +46,11 @@ public class Municipio implements Serializable {
     @Basic(optional = false)
     @Column(name = "municipio")
     private String municipio;
-    @Basic(optional = false)
-    @Column(name = "estado")
-    private int estado;
     @JoinColumn(name = "departamento_id", referencedColumnName = "id_departamento")
     @ManyToOne(optional = false)
     private Departamento departamentoId;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMunicipio")
+    private Collection<Personal> personalCollection;
 
     public Municipio() {
     }
@@ -57,10 +59,9 @@ public class Municipio implements Serializable {
         this.idMunicipio = idMunicipio;
     }
 
-    public Municipio(Integer idMunicipio, String municipio, int estado) {
+    public Municipio(Integer idMunicipio, String municipio) {
         this.idMunicipio = idMunicipio;
         this.municipio = municipio;
-        this.estado = estado;
     }
 
     public Integer getIdMunicipio() {
@@ -79,20 +80,21 @@ public class Municipio implements Serializable {
         this.municipio = municipio;
     }
 
-    public int getEstado() {
-        return estado;
-    }
-
-    public void setEstado(int estado) {
-        this.estado = estado;
-    }
-
     public Departamento getDepartamentoId() {
         return departamentoId;
     }
 
     public void setDepartamentoId(Departamento departamentoId) {
         this.departamentoId = departamentoId;
+    }
+
+    @XmlTransient
+    public Collection<Personal> getPersonalCollection() {
+        return personalCollection;
+    }
+
+    public void setPersonalCollection(Collection<Personal> personalCollection) {
+        this.personalCollection = personalCollection;
     }
 
     @Override
@@ -117,14 +119,14 @@ public class Municipio implements Serializable {
 
     @Override
     public String toString() {
-        return "co.ppi.monitor.model.Municipio[ idMunicipio=" + idMunicipio + " ]";
+        return "javaapplication7.Municipio[ idMunicipio=" + idMunicipio + " ]";
     }
-
-    public MunicipioDTO getDTO() {
-        MunicipioDTO municipios = new MunicipioDTO();
+    
+    
+     public MunicipioDTO getDTO() {
+         MunicipioDTO municipios = new MunicipioDTO();
         municipios.setIdMunicipio(idMunicipio);
         municipios.setMunicipio(municipio);
         return municipios;
     }
-
 }

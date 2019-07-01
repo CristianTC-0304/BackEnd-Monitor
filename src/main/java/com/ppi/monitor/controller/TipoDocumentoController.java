@@ -7,6 +7,8 @@ package com.ppi.monitor.controller;
 
 import com.ppi.monitor.business.ITipoDocumentoBusiness;
 import com.ppi.monitor.model.TipoDocumento;
+
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -28,13 +30,15 @@ public class TipoDocumentoController {
     
     @RequestMapping(method = RequestMethod.GET, value = "/tipodocumento")
     public List<TipoDocumento> listaTipoDocumento() {
-        
+        List<TipoDocumento> list = new ArrayList<>();
+
         try {
-           return tipoDocumentoBusiness.listaTipoDocumento();
+           list = tipoDocumentoBusiness.listaTipoDocumento();
         } catch (Exception e) {
             e.printStackTrace();
+            throw new RuntimeException("Error listando tipo documento");
         }
-        return null;
+        return list;
     }
 
 }

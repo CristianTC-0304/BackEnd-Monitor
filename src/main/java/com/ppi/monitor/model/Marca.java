@@ -103,7 +103,7 @@ public class Marca implements Serializable {
 
     @Override
     public String toString() {
-        return "co.ppi.monitor.model.Marca[ idMarca=" + idMarca + " ]";
+        return "javaapplication7.Marca[ idMarca=" + idMarca + " ]";
     }
-
+    
 }

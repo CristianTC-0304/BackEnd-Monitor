@@ -11,6 +11,7 @@ sourceCompatibility = '1.8'
 
 repositories {
     mavenCentral()
+    
 }
 
 dependencies {
@@ -19,6 +20,6 @@ dependencies {
     runtimeOnly 'mysql:mysql-connector-java'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     implementation 'com.google.firebase:firebase-admin:6.8.0'
-
+    
 
 }
