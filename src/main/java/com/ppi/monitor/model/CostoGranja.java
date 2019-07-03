@@ -7,10 +7,8 @@ package com.ppi.monitor.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -18,12 +16,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -116,8 +112,6 @@ public class CostoGranja implements Serializable {
     @Basic(optional = false)
     @Column(name = "depresiacion")
     private BigDecimal depresiacion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idcostoGranja")
-    private Collection<DtllCosto> dtllCostoCollection;
     @JoinColumn(name = "ave", referencedColumnName = "id_ave")
     @ManyToOne(optional = false)
     private Ave ave;
@@ -301,15 +295,6 @@ public class CostoGranja implements Serializable {
 
     public void setDepresiacion(BigDecimal depresiacion) {
         this.depresiacion = depresiacion;
-    }
-
-    @XmlTransient
-    public Collection<DtllCosto> getDtllCostoCollection() {
-        return dtllCostoCollection;
-    }
-
-    public void setDtllCostoCollection(Collection<DtllCosto> dtllCostoCollection) {
-        this.dtllCostoCollection = dtllCostoCollection;
     }
 
     public Ave getAve() {

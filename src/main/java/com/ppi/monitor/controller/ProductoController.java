@@ -1,5 +1,6 @@
 package com.ppi.monitor.controller;
 
+import com.ppi.monitor.DTO.ProductoDTO;
 import com.ppi.monitor.business.IProductoBusiness;
 import com.ppi.monitor.model.Producto;
 import com.ppi.monitor.util.StringUtil;
@@ -19,16 +20,14 @@ public class ProductoController {
 
     private String mensaje;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/producto")
-    public List<Producto> listaProducto(int idtipoProducto) {
-        List<Producto> list = new ArrayList<>();
+    @RequestMapping(method = RequestMethod.GET, value = "/producto/{tipoProducto}")
+    public List<ProductoDTO> listaProducto(@PathVariable("tipoProducto") int tipoProducto) {
         try {
-            list = productoBusiness.listaProducto(idtipoProducto);
+            return productoBusiness.listaProducto(tipoProducto);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Error consultado la lista");
         }
-        return list;
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/producto")
@@ -45,7 +44,7 @@ public class ProductoController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/producto/nombreProducto")
-    public Producto buscarProducto( @PathVariable("nombreProducto") String nombreProducto) {
+    public Producto buscarProducto(@PathVariable("nombreProducto") String nombreProducto) {
         Producto product = new Producto();
         try {
             product = productoBusiness.buscarProducto(nombreProducto);

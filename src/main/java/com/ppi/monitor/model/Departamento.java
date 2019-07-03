@@ -44,8 +44,6 @@ public class Departamento implements Serializable {
     @Basic(optional = false)
     @Column(name = "departamento")
     private String departamento;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "departamentoId")
-    private Collection<Municipio> municipioCollection;
 
     public Departamento() {
     }
@@ -73,15 +71,6 @@ public class Departamento implements Serializable {
 
     public void setDepartamento(String departamento) {
         this.departamento = departamento;
-    }
-
-    @XmlTransient
-    public Collection<Municipio> getMunicipioCollection() {
-        return municipioCollection;
-    }
-
-    public void setMunicipioCollection(Collection<Municipio> municipioCollection) {
-        this.municipioCollection = municipioCollection;
     }
 
     @Override

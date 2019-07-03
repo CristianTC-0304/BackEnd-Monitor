@@ -5,27 +5,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
       <group>
-        <file>file:/C:/Users/57314/Documents/projects/BackEnd-Monitor/build.gradle</file>
-        <file>file:/C:/Users/57314/Documents/projects/BackEnd-Monitor/src/main/java/com/ppi/monitor/MonitorApplication.java</file>
-        <file>file:/C:/Users/57314/Documents/projects/BackEnd-Monitor/settings.gradle</file>
+        <file>file:/C:/Users/57314/Documents/BackEnd-Monitor/src/main/java/com/ppi/monitor/model/Producto.java</file>
+        <file>file:/C:/Users/57314/Documents/BackEnd-Monitor/src/main/java/com/ppi/monitor/business/implement/ProductoBusinessImplement.java</file>
       </group>
     </open-files>
     <editor-bookmarks lastBookmarkId="0" xmlns="http://www.netbeans.org/ns/editor-bookmarks/2"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
       <group>
-        <file>file:/C:/Users/57314/Documents/BackEnd-Monitor/src/main/java/com/ppi/monitor/model/Cargo.java</file>
-        <file>file:/C:/Users/57314/Documents/BackEnd-Monitor/src/main/java/com/ppi/monitor/model/TipoDocumento.java</file>
-        <file>file:/C:/Users/57314/Documents/BackEnd-Monitor/src/main/java/com/ppi/monitor/model/ProduccionHuevo.java</file>
-        <file>file:/C:/Users/57314/Documents/BackEnd-Monitor/src/main/java/com/ppi/monitor/model/Marca.java</file>
-        <file>file:/C:/Users/57314/Documents/BackEnd-Monitor/src/main/java/com/ppi/monitor/model/Personal.java</file>
-        <file>file:/C:/Users/57314/Documents/BackEnd-Monitor/src/main/java/com/ppi/monitor/model/Departamento.java</file>
-        <file>file:/C:/Users/57314/Documents/BackEnd-Monitor/src/main/java/com/ppi/monitor/model/Salario.java</file>
-        <file>file:/C:/Users/57314/Documents/BackEnd-Monitor/src/main/java/com/ppi/monitor/model/Ave.java</file>
-        <file>file:/C:/Users/57314/Documents/BackEnd-Monitor/src/main/java/com/ppi/monitor/model/CostoGranja.java</file>
         <file>file:/C:/Users/57314/Documents/BackEnd-Monitor/src/main/java/com/ppi/monitor/model/Producto.java</file>
-        <file>file:/C:/Users/57314/Documents/BackEnd-Monitor/src/main/java/com/ppi/monitor/model/Municipio.java</file>
-        <file>file:/C:/Users/57314/Documents/BackEnd-Monitor/src/main/java/com/ppi/monitor/model/DtllCosto.java</file>
-        <file>file:/C:/Users/57314/Documents/BackEnd-Monitor/src/main/java/com/ppi/monitor/model/TipoProducto.java</file>
+        <file>file:/C:/Users/57314/Documents/BackEnd-Monitor/src/main/java/com/ppi/monitor/model/CostoGranja.java</file>
+        <file>file:/C:/Users/57314/Documents/BackEnd-Monitor/src/main/java/com/ppi/monitor/business/implement/ProductoBusinessImplement.java</file>
+        <file>file:/C:/Users/57314/Documents/BackEnd-Monitor/src/main/java/com/ppi/monitor/model/DtProducto.java</file>
       </group>
     </open-files>
   </auxiliary>

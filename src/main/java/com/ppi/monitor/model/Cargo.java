@@ -22,16 +22,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
- *
  * @author 57314
  */
 @Entity
 @Table(name = "cargo")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Cargo.findAll", query = "SELECT c FROM Cargo c")
-    , @NamedQuery(name = "Cargo.findByIdCargo", query = "SELECT c FROM Cargo c WHERE c.idCargo = :idCargo")
-    , @NamedQuery(name = "Cargo.findByNombreCargo", query = "SELECT c FROM Cargo c WHERE c.nombreCargo = :nombreCargo")})
+        @NamedQuery(name = "Cargo.findAll", query = "SELECT c FROM Cargo c")
+        , @NamedQuery(name = "Cargo.findByIdCargo", query = "SELECT c FROM Cargo c WHERE c.idCargo = :idCargo")
+        , @NamedQuery(name = "Cargo.findByNombreCargo", query = "SELECT c FROM Cargo c WHERE c.nombreCargo = :nombreCargo")})
 public class Cargo implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -43,8 +42,6 @@ public class Cargo implements Serializable {
     @Basic(optional = false)
     @Column(name = "nombre_cargo")
     private String nombreCargo;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCargo")
-    private Collection<Personal> personalCollection;
 
     public Cargo() {
     }
@@ -74,15 +71,6 @@ public class Cargo implements Serializable {
         this.nombreCargo = nombreCargo;
     }
 
-    @XmlTransient
-    public Collection<Personal> getPersonalCollection() {
-        return personalCollection;
-    }
-
-    public void setPersonalCollection(Collection<Personal> personalCollection) {
-        this.personalCollection = personalCollection;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -107,5 +95,5 @@ public class Cargo implements Serializable {
     public String toString() {
         return "javaapplication7.Cargo[ idCargo=" + idCargo + " ]";
     }
-    
+
 }

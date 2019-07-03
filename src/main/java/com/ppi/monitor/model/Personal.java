@@ -64,7 +64,7 @@ public class Personal implements Serializable {
     private Integer telefono;
     @Basic(optional = false)
     @Column(name = "celular")
-    private int celular;
+    private BigInteger celular;
     @Basic(optional = false)
     @Column(name = "direccion")
     private String direccion;
@@ -91,7 +91,7 @@ public class Personal implements Serializable {
         this.idPersonal = idPersonal;
     }
 
-    public Personal(Integer idPersonal, String primerNombre, String primerApellido, int celular, String direccion, String correoElectronico, int estado) {
+    public Personal(Integer idPersonal, String primerNombre, String primerApellido, BigInteger celular, String direccion, String correoElectronico, int estado) {
         this.idPersonal = idPersonal;
         this.primerNombre = primerNombre;
         this.primerApellido = primerApellido;
@@ -157,11 +157,11 @@ public class Personal implements Serializable {
         this.telefono = telefono;
     }
 
-    public int getCelular() {
+    public BigInteger getCelular() {
         return celular;
     }
 
-    public void setCelular(int celular) {
+    public void setCelular(BigInteger celular) {
         this.celular = celular;
     }
 

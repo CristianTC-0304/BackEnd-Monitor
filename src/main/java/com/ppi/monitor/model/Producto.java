@@ -5,10 +5,13 @@
  */
 package com.ppi.monitor.model;
 
+import com.ppi.monitor.DTO.ProductoDTO;
+
 import java.io.Serializable;
-import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,10 +21,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -33,16 +38,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Producto.findAll", query = "SELECT p FROM Producto p")
     , @NamedQuery(name = "Producto.findByIdproducto", query = "SELECT p FROM Producto p WHERE p.idproducto = :idproducto")
+    , @NamedQuery(name = "Producto.findByCodProducto", query = "SELECT p FROM Producto p WHERE p.codProducto = :codProducto")
     , @NamedQuery(name = "Producto.findByNombreProducto", query = "SELECT p FROM Producto p WHERE p.nombreProducto = :nombreProducto")
-    , @NamedQuery(name = "Producto.findByCostoProducto", query = "SELECT p FROM Producto p WHERE p.costoProducto = :costoProducto")
-    , @NamedQuery(name = "Producto.findByEntrada", query = "SELECT p FROM Producto p WHERE p.entrada = :entrada")
-    , @NamedQuery(name = "Producto.findBySalida", query = "SELECT p FROM Producto p WHERE p.salida = :salida")
-    , @NamedQuery(name = "Producto.findByCantidad", query = "SELECT p FROM Producto p WHERE p.cantidad = :cantidad")
-    , @NamedQuery(name = "Producto.findByUnidadMedida", query = "SELECT p FROM Producto p WHERE p.unidadMedida = :unidadMedida")
-    , @NamedQuery(name = "Producto.findByTipoIngreso", query = "SELECT p FROM Producto p WHERE p.tipoIngreso = :tipoIngreso")
-    , @NamedQuery(name = "Producto.findByEstado", query = "SELECT p FROM Producto p WHERE p.estado = :estado")
     , @NamedQuery(name = "Producto.findByMarcaProducto", query = "SELECT p FROM Producto p WHERE p.marcaProducto = :marcaProducto")
-    , @NamedQuery(name = "Producto.findByFechaMovimiento", query = "SELECT p FROM Producto p WHERE p.fechaMovimiento = :fechaMovimiento")})
+    , @NamedQuery(name = "Producto.findByUnidadMedida", query = "SELECT p FROM Producto p WHERE p.unidadMedida = :unidadMedida")
+    , @NamedQuery(name = "Producto.findByEstado", query = "SELECT p FROM Producto p WHERE p.estado = :estado")
+    , @NamedQuery(name = "Producto.findByFechaVencimiento", query = "SELECT p FROM Producto p WHERE p.fechaVencimiento = :fechaVencimiento")})
 public class Producto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,35 +53,26 @@ public class Producto implements Serializable {
     @Column(name = "idproducto")
     private Integer idproducto;
     @Basic(optional = false)
+    @Column(name = "cod_producto")
+    private String codProducto;
+    @Basic(optional = false)
     @Column(name = "nombre_producto")
     private String nombreProducto;
-    // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Basic(optional = false)
-    @Column(name = "costo_producto")
-    private BigDecimal costoProducto;
-    @Column(name = "entrada")
-    private Integer entrada;
-    @Column(name = "salida")
-    private Integer salida;
-    @Basic(optional = false)
-    @Column(name = "cantidad")
-    private int cantidad;
-    @Basic(optional = false)
-    @Column(name = "unidad_medida")
-    private String unidadMedida;
-    @Basic(optional = false)
-    @Column(name = "tipo_ingreso")
-    private String tipoIngreso;
-    @Basic(optional = false)
-    @Column(name = "estado")
-    private int estado;
     @Basic(optional = false)
     @Column(name = "marca_producto")
     private String marcaProducto;
     @Basic(optional = false)
-    @Column(name = "fecha_movimiento")
+    @Column(name = "unidad_medida")
+    private String unidadMedida;
+    @Basic(optional = false)
+    @Column(name = "estado")
+    private int estado;
+    @Basic(optional = false)
+    @Column(name = "fecha_vencimiento")
     @Temporal(TemporalType.DATE)
-    private Date fechaMovimiento;
+    private Date fechaVencimiento;
+   // @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProducto")
+   // private Collection<DtProducto> dtProductoCollection;
     @JoinColumn(name = "id_tipo_producto", referencedColumnName = "idtipo_producto")
     @ManyToOne(optional = false)
     private TipoProducto idTipoProducto;
@@ -92,16 +84,14 @@ public class Producto implements Serializable {
         this.idproducto = idproducto;
     }
 
-    public Producto(Integer idproducto, String nombreProducto, BigDecimal costoProducto, int cantidad, String unidadMedida, String tipoIngreso, int estado, String marcaProducto, Date fechaMovimiento) {
+    public Producto(Integer idproducto, String codProducto, String nombreProducto, String marcaProducto, String unidadMedida, int estado, Date fechaVencimiento) {
         this.idproducto = idproducto;
+        this.codProducto = codProducto;
         this.nombreProducto = nombreProducto;
-        this.costoProducto = costoProducto;
-        this.cantidad = cantidad;
-        this.unidadMedida = unidadMedida;
-        this.tipoIngreso = tipoIngreso;
-        this.estado = estado;
         this.marcaProducto = marcaProducto;
-        this.fechaMovimiento = fechaMovimiento;
+        this.unidadMedida = unidadMedida;
+        this.estado = estado;
+        this.fechaVencimiento = fechaVencimiento;
     }
 
     public Integer getIdproducto() {
@@ -112,68 +102,20 @@ public class Producto implements Serializable {
         this.idproducto = idproducto;
     }
 
+    public String getCodProducto() {
+        return codProducto;
+    }
+
+    public void setCodProducto(String codProducto) {
+        this.codProducto = codProducto;
+    }
+
     public String getNombreProducto() {
         return nombreProducto;
     }
 
     public void setNombreProducto(String nombreProducto) {
         this.nombreProducto = nombreProducto;
-    }
-
-    public BigDecimal getCostoProducto() {
-        return costoProducto;
-    }
-
-    public void setCostoProducto(BigDecimal costoProducto) {
-        this.costoProducto = costoProducto;
-    }
-
-    public Integer getEntrada() {
-        return entrada;
-    }
-
-    public void setEntrada(Integer entrada) {
-        this.entrada = entrada;
-    }
-
-    public Integer getSalida() {
-        return salida;
-    }
-
-    public void setSalida(Integer salida) {
-        this.salida = salida;
-    }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public String getUnidadMedida() {
-        return unidadMedida;
-    }
-
-    public void setUnidadMedida(String unidadMedida) {
-        this.unidadMedida = unidadMedida;
-    }
-
-    public String getTipoIngreso() {
-        return tipoIngreso;
-    }
-
-    public void setTipoIngreso(String tipoIngreso) {
-        this.tipoIngreso = tipoIngreso;
-    }
-
-    public int getEstado() {
-        return estado;
-    }
-
-    public void setEstado(int estado) {
-        this.estado = estado;
     }
 
     public String getMarcaProducto() {
@@ -184,14 +126,39 @@ public class Producto implements Serializable {
         this.marcaProducto = marcaProducto;
     }
 
-    public Date getFechaMovimiento() {
-        return fechaMovimiento;
+    public String getUnidadMedida() {
+        return unidadMedida;
     }
 
-    public void setFechaMovimiento(Date fechaMovimiento) {
-        this.fechaMovimiento = fechaMovimiento;
+    public void setUnidadMedida(String unidadMedida) {
+        this.unidadMedida = unidadMedida;
     }
 
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
+    public Date getFechaVencimiento() {
+        return fechaVencimiento;
+    }
+
+    public void setFechaVencimiento(Date fechaVencimiento) {
+        this.fechaVencimiento = fechaVencimiento;
+    }
+/*
+    @XmlTransient
+    public Collection<DtProducto> getDtProductoCollection() {
+        return dtProductoCollection;
+    }
+
+    public void setDtProductoCollection(Collection<DtProducto> dtProductoCollection) {
+        this.dtProductoCollection = dtProductoCollection;
+    }
+*/
     public TipoProducto getIdTipoProducto() {
         return idTipoProducto;
     }
@@ -224,5 +191,17 @@ public class Producto implements Serializable {
     public String toString() {
         return "javaapplication7.Producto[ idproducto=" + idproducto + " ]";
     }
-    
+
+    public ProductoDTO getDTO() {
+        ProductoDTO productoDTO = new ProductoDTO();
+        productoDTO.setIdproducto(idproducto);
+        productoDTO.setCodProducto(codProducto);
+        productoDTO.setNombreProducto(nombreProducto);
+        productoDTO.setMarcaProducto(marcaProducto);
+        productoDTO.setUnidadMedida(unidadMedida);
+        productoDTO.setFechaVencimiento(fechaVencimiento);
+        productoDTO.setTipoProductoDTO(idTipoProducto.getDTO());
+        return productoDTO;
+    }
+
 }

@@ -6,6 +6,7 @@
 package com.ppi.monitor.model;
 
 import com.ppi.monitor.DTO.MunicipioDTO;
+
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -25,16 +26,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
 /**
- *
  * @author 57314
  */
 @Entity
 @Table(name = "municipio")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Municipio.findAll", query = "SELECT m FROM Municipio m")
-    , @NamedQuery(name = "Municipio.findByIdMunicipio", query = "SELECT m FROM Municipio m WHERE m.idMunicipio = :idMunicipio")
-    , @NamedQuery(name = "Municipio.findByMunicipio", query = "SELECT m FROM Municipio m WHERE m.municipio = :municipio")})
+        @NamedQuery(name = "Municipio.findAll", query = "SELECT m FROM Municipio m")
+        , @NamedQuery(name = "Municipio.findByIdMunicipio", query = "SELECT m FROM Municipio m WHERE m.idMunicipio = :idMunicipio")
+        , @NamedQuery(name = "Municipio.findByMunicipio", query = "SELECT m FROM Municipio m WHERE m.municipio = :municipio")})
 public class Municipio implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,8 +49,6 @@ public class Municipio implements Serializable {
     @JoinColumn(name = "departamento_id", referencedColumnName = "id_departamento")
     @ManyToOne(optional = false)
     private Departamento departamentoId;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idMunicipio")
-    private Collection<Personal> personalCollection;
 
     public Municipio() {
     }
@@ -88,15 +86,6 @@ public class Municipio implements Serializable {
         this.departamentoId = departamentoId;
     }
 
-    @XmlTransient
-    public Collection<Personal> getPersonalCollection() {
-        return personalCollection;
-    }
-
-    public void setPersonalCollection(Collection<Personal> personalCollection) {
-        this.personalCollection = personalCollection;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -121,10 +110,10 @@ public class Municipio implements Serializable {
     public String toString() {
         return "javaapplication7.Municipio[ idMunicipio=" + idMunicipio + " ]";
     }
-    
-    
-     public MunicipioDTO getDTO() {
-         MunicipioDTO municipios = new MunicipioDTO();
+
+
+    public MunicipioDTO getDTO() {
+        MunicipioDTO municipios = new MunicipioDTO();
         municipios.setIdMunicipio(idMunicipio);
         municipios.setMunicipio(municipio);
         return municipios;

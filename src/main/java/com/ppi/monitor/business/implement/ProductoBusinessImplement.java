@@ -1,7 +1,11 @@
 package com.ppi.monitor.business.implement;
 
+import com.ppi.monitor.DTO.DtProductoDTO;
+import com.ppi.monitor.DTO.ProductoDTO;
 import com.ppi.monitor.business.IProductoBusiness;
+import com.ppi.monitor.dao.IDtProductoDAO;
 import com.ppi.monitor.dao.IProductoDAO;
+import com.ppi.monitor.model.DtProducto;
 import com.ppi.monitor.model.Producto;
 import com.ppi.monitor.util.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,17 +19,41 @@ public class ProductoBusinessImplement implements IProductoBusiness {
 
     @Autowired
     private IProductoDAO productoDAO;
+    @Autowired
+    private IDtProductoDAO dtProductoDAO;
 
     @Override
-    public List<Producto> listaProducto(int idtipoProducto) {
-        List<Producto> list = new ArrayList<>();
+    public List<ProductoDTO> listaProducto(int tipoProducto) {
+        List<Producto> listaProducto = productoDAO.listaProducto(tipoProducto);
         try {
-            list = productoDAO.listaProducto(idtipoProducto);
+            return listaProductoDTO(listaProducto);
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Error consultado la lista");
         }
-        return list;
+    }
+
+    private List<ProductoDTO> listaProductoDTO(List<Producto> listaProducto) {
+        List<ProductoDTO> listDTOProducto = new ArrayList<>();
+        ProductoDTO productoDTO;
+        for (Producto producto : listaProducto) {
+            productoDTO = producto.getDTO();
+            productoDTO.setListaDtProductoDTO(listaDtProducto(producto.getIdproducto()));
+            listDTOProducto.add(productoDTO);
+        }
+        return listDTOProducto;
+
+    }
+
+    private List<DtProductoDTO> listaDtProducto(Integer idProducto) {
+        List<DtProducto> listaDtProducto = dtProductoDAO.listaDtProducto(idProducto);
+        List<DtProductoDTO> listaDtProductoDTO = new ArrayList<>();
+        DtProductoDTO dtProductoDTO;
+        for (DtProducto dtProducto : listaDtProducto) {
+            dtProductoDTO = dtProducto.getDTO();
+            listaDtProductoDTO.add(dtProductoDTO);
+        }
+        return listaDtProductoDTO;
     }
 
     @Override

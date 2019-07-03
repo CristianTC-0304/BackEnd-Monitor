@@ -5,6 +5,8 @@
  */
 package com.ppi.monitor.model;
 
+import com.ppi.monitor.DTO.TipoProductoDTO;
+
 import java.io.Serializable;
 import java.util.Collection;
 import javax.persistence.Basic;
@@ -97,5 +99,12 @@ public class TipoProducto implements Serializable {
     public String toString() {
         return "javaapplication7.TipoProducto[ idtipoProducto=" + idtipoProducto + " ]";
     }
-    
+
+
+    public TipoProductoDTO getDTO() {
+        TipoProductoDTO tipoProductoDTO = new TipoProductoDTO();
+        tipoProductoDTO.setIdtipoProducto(idtipoProducto);
+        tipoProductoDTO.setNombreProducto(nombreProducto);
+        return tipoProductoDTO;
+    }
 }
