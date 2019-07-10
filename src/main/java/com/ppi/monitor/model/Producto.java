@@ -9,7 +9,6 @@ import com.ppi.monitor.DTO.ProductoDTO;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -23,8 +22,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 
@@ -40,10 +37,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Producto.findByIdproducto", query = "SELECT p FROM Producto p WHERE p.idproducto = :idproducto")
     , @NamedQuery(name = "Producto.findByCodProducto", query = "SELECT p FROM Producto p WHERE p.codProducto = :codProducto")
     , @NamedQuery(name = "Producto.findByNombreProducto", query = "SELECT p FROM Producto p WHERE p.nombreProducto = :nombreProducto")
-    , @NamedQuery(name = "Producto.findByMarcaProducto", query = "SELECT p FROM Producto p WHERE p.marcaProducto = :marcaProducto")
     , @NamedQuery(name = "Producto.findByUnidadMedida", query = "SELECT p FROM Producto p WHERE p.unidadMedida = :unidadMedida")
-    , @NamedQuery(name = "Producto.findByEstado", query = "SELECT p FROM Producto p WHERE p.estado = :estado")
-    , @NamedQuery(name = "Producto.findByFechaVencimiento", query = "SELECT p FROM Producto p WHERE p.fechaVencimiento = :fechaVencimiento")})
+    , @NamedQuery(name = "Producto.findByEstado", query = "SELECT p FROM Producto p WHERE p.estado = :estado")})
 public class Producto implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -59,23 +54,19 @@ public class Producto implements Serializable {
     @Column(name = "nombre_producto")
     private String nombreProducto;
     @Basic(optional = false)
-    @Column(name = "marca_producto")
-    private String marcaProducto;
-    @Basic(optional = false)
     @Column(name = "unidad_medida")
     private String unidadMedida;
     @Basic(optional = false)
     @Column(name = "estado")
     private int estado;
-    @Basic(optional = false)
-    @Column(name = "fecha_vencimiento")
-    @Temporal(TemporalType.DATE)
-    private Date fechaVencimiento;
-   // @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProducto")
-   // private Collection<DtProducto> dtProductoCollection;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idProducto")
+    private Collection<DtProducto> dtProductoCollection;
     @JoinColumn(name = "id_tipo_producto", referencedColumnName = "idtipo_producto")
     @ManyToOne(optional = false)
     private TipoProducto idTipoProducto;
+    @JoinColumn(name = "marca_producto", referencedColumnName = "id_marca")
+    @ManyToOne
+    private Marca marcaProducto;
 
     public Producto() {
     }
@@ -84,14 +75,12 @@ public class Producto implements Serializable {
         this.idproducto = idproducto;
     }
 
-    public Producto(Integer idproducto, String codProducto, String nombreProducto, String marcaProducto, String unidadMedida, int estado, Date fechaVencimiento) {
+    public Producto(Integer idproducto, String codProducto, String nombreProducto, String unidadMedida, int estado) {
         this.idproducto = idproducto;
         this.codProducto = codProducto;
         this.nombreProducto = nombreProducto;
-        this.marcaProducto = marcaProducto;
         this.unidadMedida = unidadMedida;
         this.estado = estado;
-        this.fechaVencimiento = fechaVencimiento;
     }
 
     public Integer getIdproducto() {
@@ -118,14 +107,6 @@ public class Producto implements Serializable {
         this.nombreProducto = nombreProducto;
     }
 
-    public String getMarcaProducto() {
-        return marcaProducto;
-    }
-
-    public void setMarcaProducto(String marcaProducto) {
-        this.marcaProducto = marcaProducto;
-    }
-
     public String getUnidadMedida() {
         return unidadMedida;
     }
@@ -142,14 +123,6 @@ public class Producto implements Serializable {
         this.estado = estado;
     }
 
-    public Date getFechaVencimiento() {
-        return fechaVencimiento;
-    }
-
-    public void setFechaVencimiento(Date fechaVencimiento) {
-        this.fechaVencimiento = fechaVencimiento;
-    }
-/*
     @XmlTransient
     public Collection<DtProducto> getDtProductoCollection() {
         return dtProductoCollection;
@@ -158,13 +131,21 @@ public class Producto implements Serializable {
     public void setDtProductoCollection(Collection<DtProducto> dtProductoCollection) {
         this.dtProductoCollection = dtProductoCollection;
     }
-*/
+
     public TipoProducto getIdTipoProducto() {
         return idTipoProducto;
     }
 
     public void setIdTipoProducto(TipoProducto idTipoProducto) {
         this.idTipoProducto = idTipoProducto;
+    }
+
+    public Marca getMarcaProducto() {
+        return marcaProducto;
+    }
+
+    public void setMarcaProducto(Marca marcaProducto) {
+        this.marcaProducto = marcaProducto;
     }
 
     @Override
@@ -197,10 +178,10 @@ public class Producto implements Serializable {
         productoDTO.setIdproducto(idproducto);
         productoDTO.setCodProducto(codProducto);
         productoDTO.setNombreProducto(nombreProducto);
-        productoDTO.setMarcaProducto(marcaProducto);
+        productoDTO.setMarcaDTO(marcaProducto.getDTO());
         productoDTO.setUnidadMedida(unidadMedida);
-        productoDTO.setFechaVencimiento(fechaVencimiento);
         productoDTO.setTipoProductoDTO(idTipoProducto.getDTO());
+        productoDTO.setEstado(estado);
         return productoDTO;
     }
 

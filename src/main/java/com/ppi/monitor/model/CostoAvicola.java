@@ -26,36 +26,36 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author 57314
  */
 @Entity
-@Table(name = "costo_granja")
+@Table(name = "costo_avicola")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "CostoGranja.findAll", query = "SELECT c FROM CostoGranja c")
-    , @NamedQuery(name = "CostoGranja.findByIdcostoGranja", query = "SELECT c FROM CostoGranja c WHERE c.idcostoGranja = :idcostoGranja")
-    , @NamedQuery(name = "CostoGranja.findBySemanaPolla", query = "SELECT c FROM CostoGranja c WHERE c.semanaPolla = :semanaPolla")
-    , @NamedQuery(name = "CostoGranja.findByFechaCreacion", query = "SELECT c FROM CostoGranja c WHERE c.fechaCreacion = :fechaCreacion")
-    , @NamedQuery(name = "CostoGranja.findByPlanta", query = "SELECT c FROM CostoGranja c WHERE c.planta = :planta")
-    , @NamedQuery(name = "CostoGranja.findByCostoAlimento", query = "SELECT c FROM CostoGranja c WHERE c.costoAlimento = :costoAlimento")
-    , @NamedQuery(name = "CostoGranja.findByCantidadKg", query = "SELECT c FROM CostoGranja c WHERE c.cantidadKg = :cantidadKg")
-    , @NamedQuery(name = "CostoGranja.findByTotalAlojamiento", query = "SELECT c FROM CostoGranja c WHERE c.totalAlojamiento = :totalAlojamiento")
-    , @NamedQuery(name = "CostoGranja.findByTotalManoObra", query = "SELECT c FROM CostoGranja c WHERE c.totalManoObra = :totalManoObra")
-    , @NamedQuery(name = "CostoGranja.findByAmortizacion", query = "SELECT c FROM CostoGranja c WHERE c.amortizacion = :amortizacion")
-    , @NamedQuery(name = "CostoGranja.findByTotalVacunas", query = "SELECT c FROM CostoGranja c WHERE c.totalVacunas = :totalVacunas")
-    , @NamedQuery(name = "CostoGranja.findByDespique", query = "SELECT c FROM CostoGranja c WHERE c.despique = :despique")
-    , @NamedQuery(name = "CostoGranja.findByCalefacion", query = "SELECT c FROM CostoGranja c WHERE c.calefacion = :calefacion")
-    , @NamedQuery(name = "CostoGranja.findByViruta", query = "SELECT c FROM CostoGranja c WHERE c.viruta = :viruta")
-    , @NamedQuery(name = "CostoGranja.findByEmpaque", query = "SELECT c FROM CostoGranja c WHERE c.empaque = :empaque")
-    , @NamedQuery(name = "CostoGranja.findByMortalidad", query = "SELECT c FROM CostoGranja c WHERE c.mortalidad = :mortalidad")
-    , @NamedQuery(name = "CostoGranja.findByValorMortalidad", query = "SELECT c FROM CostoGranja c WHERE c.valorMortalidad = :valorMortalidad")
-    , @NamedQuery(name = "CostoGranja.findBySubTotal", query = "SELECT c FROM CostoGranja c WHERE c.subTotal = :subTotal")
-    , @NamedQuery(name = "CostoGranja.findByGranTotal", query = "SELECT c FROM CostoGranja c WHERE c.granTotal = :granTotal")
-    , @NamedQuery(name = "CostoGranja.findByDepresiacion", query = "SELECT c FROM CostoGranja c WHERE c.depresiacion = :depresiacion")})
-public class CostoGranja implements Serializable {
+    @NamedQuery(name = "CostoAvicola.findAll", query = "SELECT c FROM CostoAvicola c")
+    , @NamedQuery(name = "CostoAvicola.findByIdcostoAvicola", query = "SELECT c FROM CostoAvicola c WHERE c.idcostoAvicola = :idcostoAvicola")
+    , @NamedQuery(name = "CostoAvicola.findBySemanaPolla", query = "SELECT c FROM CostoAvicola c WHERE c.semanaPolla = :semanaPolla")
+    , @NamedQuery(name = "CostoAvicola.findByFechaCreacion", query = "SELECT c FROM CostoAvicola c WHERE c.fechaCreacion = :fechaCreacion")
+    , @NamedQuery(name = "CostoAvicola.findByPlanta", query = "SELECT c FROM CostoAvicola c WHERE c.planta = :planta")
+    , @NamedQuery(name = "CostoAvicola.findByCostoAlimento", query = "SELECT c FROM CostoAvicola c WHERE c.costoAlimento = :costoAlimento")
+    , @NamedQuery(name = "CostoAvicola.findByCantidadKg", query = "SELECT c FROM CostoAvicola c WHERE c.cantidadKg = :cantidadKg")
+    , @NamedQuery(name = "CostoAvicola.findByTotalAlojamiento", query = "SELECT c FROM CostoAvicola c WHERE c.totalAlojamiento = :totalAlojamiento")
+    , @NamedQuery(name = "CostoAvicola.findByTotalManoObra", query = "SELECT c FROM CostoAvicola c WHERE c.totalManoObra = :totalManoObra")
+    , @NamedQuery(name = "CostoAvicola.findByAmortizacion", query = "SELECT c FROM CostoAvicola c WHERE c.amortizacion = :amortizacion")
+    , @NamedQuery(name = "CostoAvicola.findByTotalVacunas", query = "SELECT c FROM CostoAvicola c WHERE c.totalVacunas = :totalVacunas")
+    , @NamedQuery(name = "CostoAvicola.findByDespique", query = "SELECT c FROM CostoAvicola c WHERE c.despique = :despique")
+    , @NamedQuery(name = "CostoAvicola.findByCalefacion", query = "SELECT c FROM CostoAvicola c WHERE c.calefacion = :calefacion")
+    , @NamedQuery(name = "CostoAvicola.findByViruta", query = "SELECT c FROM CostoAvicola c WHERE c.viruta = :viruta")
+    , @NamedQuery(name = "CostoAvicola.findByEmpaque", query = "SELECT c FROM CostoAvicola c WHERE c.empaque = :empaque")
+    , @NamedQuery(name = "CostoAvicola.findByMortalidad", query = "SELECT c FROM CostoAvicola c WHERE c.mortalidad = :mortalidad")
+    , @NamedQuery(name = "CostoAvicola.findByValorMortalidad", query = "SELECT c FROM CostoAvicola c WHERE c.valorMortalidad = :valorMortalidad")
+    , @NamedQuery(name = "CostoAvicola.findBySubTotal", query = "SELECT c FROM CostoAvicola c WHERE c.subTotal = :subTotal")
+    , @NamedQuery(name = "CostoAvicola.findByGranTotal", query = "SELECT c FROM CostoAvicola c WHERE c.granTotal = :granTotal")
+    , @NamedQuery(name = "CostoAvicola.findByDepresiacion", query = "SELECT c FROM CostoAvicola c WHERE c.depresiacion = :depresiacion")})
+public class CostoAvicola implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @Column(name = "idcosto_granja")
-    private Integer idcostoGranja;
+    @Column(name = "idcosto_avicola")
+    private Integer idcostoAvicola;
     @Basic(optional = false)
     @Column(name = "semana_polla")
     private int semanaPolla;
@@ -116,15 +116,15 @@ public class CostoGranja implements Serializable {
     @ManyToOne(optional = false)
     private Ave ave;
 
-    public CostoGranja() {
+    public CostoAvicola() {
     }
 
-    public CostoGranja(Integer idcostoGranja) {
-        this.idcostoGranja = idcostoGranja;
+    public CostoAvicola(Integer idcostoAvicola) {
+        this.idcostoAvicola = idcostoAvicola;
     }
 
-    public CostoGranja(Integer idcostoGranja, int semanaPolla, Date fechaCreacion, String planta, BigDecimal costoAlimento, int cantidadKg, BigDecimal totalAlojamiento, BigDecimal totalManoObra, BigDecimal amortizacion, BigDecimal totalVacunas, BigDecimal despique, BigDecimal calefacion, BigDecimal viruta, BigDecimal empaque, String mortalidad, BigDecimal valorMortalidad, BigDecimal subTotal, BigDecimal granTotal, BigDecimal depresiacion) {
-        this.idcostoGranja = idcostoGranja;
+    public CostoAvicola(Integer idcostoAvicola, int semanaPolla, Date fechaCreacion, String planta, BigDecimal costoAlimento, int cantidadKg, BigDecimal totalAlojamiento, BigDecimal totalManoObra, BigDecimal amortizacion, BigDecimal totalVacunas, BigDecimal despique, BigDecimal calefacion, BigDecimal viruta, BigDecimal empaque, String mortalidad, BigDecimal valorMortalidad, BigDecimal subTotal, BigDecimal granTotal, BigDecimal depresiacion) {
+        this.idcostoAvicola = idcostoAvicola;
         this.semanaPolla = semanaPolla;
         this.fechaCreacion = fechaCreacion;
         this.planta = planta;
@@ -145,12 +145,12 @@ public class CostoGranja implements Serializable {
         this.depresiacion = depresiacion;
     }
 
-    public Integer getIdcostoGranja() {
-        return idcostoGranja;
+    public Integer getIdcostoAvicola() {
+        return idcostoAvicola;
     }
 
-    public void setIdcostoGranja(Integer idcostoGranja) {
-        this.idcostoGranja = idcostoGranja;
+    public void setIdcostoAvicola(Integer idcostoAvicola) {
+        this.idcostoAvicola = idcostoAvicola;
     }
 
     public int getSemanaPolla() {
@@ -308,18 +308,18 @@ public class CostoGranja implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idcostoGranja != null ? idcostoGranja.hashCode() : 0);
+        hash += (idcostoAvicola != null ? idcostoAvicola.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CostoGranja)) {
+        if (!(object instanceof CostoAvicola)) {
             return false;
         }
-        CostoGranja other = (CostoGranja) object;
-        if ((this.idcostoGranja == null && other.idcostoGranja != null) || (this.idcostoGranja != null && !this.idcostoGranja.equals(other.idcostoGranja))) {
+        CostoAvicola other = (CostoAvicola) object;
+        if ((this.idcostoAvicola == null && other.idcostoAvicola != null) || (this.idcostoAvicola != null && !this.idcostoAvicola.equals(other.idcostoAvicola))) {
             return false;
         }
         return true;
@@ -327,7 +327,7 @@ public class CostoGranja implements Serializable {
 
     @Override
     public String toString() {
-        return "javaapplication7.CostoGranja[ idcostoGranja=" + idcostoGranja + " ]";
+        return "javaapplication7.CostoAvicola[ idcostoAvicola=" + idcostoAvicola + " ]";
     }
     
 }

@@ -22,6 +22,7 @@ public class ProductoBusinessImplement implements IProductoBusiness {
     @Autowired
     private IDtProductoDAO dtProductoDAO;
 
+
     @Override
     public List<ProductoDTO> listaProducto(int tipoProducto) {
         List<Producto> listaProducto = productoDAO.listaProducto(tipoProducto);
@@ -29,7 +30,7 @@ public class ProductoBusinessImplement implements IProductoBusiness {
             return listaProductoDTO(listaProducto);
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException("Error consultado la lista");
+            throw new RuntimeException("Error consultado la lista.");
         }
     }
 
@@ -57,18 +58,53 @@ public class ProductoBusinessImplement implements IProductoBusiness {
     }
 
     @Override
-    public void crearProducto(Producto producto) {
-        Producto product = producto;
+    public void crearProducto(ProductoDTO productoDTO) {
+        Producto product = productoDTO.getEntity();
+        ProductoDTO productDTO;
         try {
-            if (StringUtil.isNullOrEmpty(producto.getIdproducto())) {
+            if (StringUtil.isNullOrEmpty(productoDTO.getIdproducto())) {
+                product.setEstado(1);
                 productoDAO.crearProducto(product);
+                List<DtProductoDTO> listDtProductoDTO = ingresoDtProducto(productoDTO.getListaDtProductoDTO(), product.getDTO());
+                productDTO = product.getDTO();
+                productDTO.setListaDtProductoDTO(listDtProductoDTO);
             } else {
                 productoDAO.actualizarProducto(product);
+                List<DtProductoDTO> listDtProductoDTO = ingresoDtProducto(productoDTO.getListaDtProductoDTO(), product.getDTO());
+                productDTO = product.getDTO();
+                productDTO.setListaDtProductoDTO(listDtProductoDTO);
             }
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException("Error guardando producto");
+            throw new RuntimeException("Error guardando producto.");
         }
+    }
+
+    private List<DtProductoDTO> ingresoDtProducto(List<DtProductoDTO> list, ProductoDTO productoDTO) {
+        List<DtProductoDTO> listDtproductoDto = new ArrayList<>();
+        DtProducto dtProducto;
+        try {
+            if (list.size() > 0) {
+                int i = 0;
+                for (DtProductoDTO dtProductoDTO : list) {
+                    if (StringUtil.isNullOrEmpty(list.get(i).getIddtProducto())) {
+                        dtProducto = dtProductoDTO.getEntity();
+                        dtProducto.setIdProducto(new Producto(productoDTO.getEntity().getIdproducto()));
+                        dtProductoDAO.ingresarDtProducto(dtProducto);
+                    } else {
+                        dtProducto = dtProductoDTO.getEntity();
+                        dtProducto.setIdProducto(new Producto(productoDTO.getEntity().getIdproducto()));
+                        dtProductoDAO.actualizarDtProducto(dtProducto);
+                    }
+                    i++;
+                }
+            }
+            return listDtproductoDto;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error guardando Detalle producto.");
+        }
+
     }
 
 
@@ -79,8 +115,20 @@ public class ProductoBusinessImplement implements IProductoBusiness {
             product = productoDAO.buscarProducto(nombreProducto);
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException("Error al buscar producto");
+            throw new RuntimeException("Error al buscar producto.");
         }
         return product;
+    }
+
+    @Override
+    public void cambiarEstadoProducto(int idProducto) {
+        Producto product = productoDAO.buscarProductoId(idProducto);
+        try {
+            product.setEstado(0);
+            productoDAO.actualizarProducto(product);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error eliminado producto.");
+        }
     }
 }

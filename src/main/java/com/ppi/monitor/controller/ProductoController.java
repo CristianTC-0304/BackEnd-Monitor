@@ -12,15 +12,16 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/monitor")
-@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT})
+@CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 public class ProductoController {
 
     @Autowired
     private IProductoBusiness productoBusiness;
 
     private String mensaje;
+    private int idProducto;
 
-    @RequestMapping(method = RequestMethod.GET, value = "/producto/{tipoProducto}")
+    @RequestMapping(method = RequestMethod.GET, value = "/productos/{tipoProducto}")
     public List<ProductoDTO> listaProducto(@PathVariable("tipoProducto") int tipoProducto) {
         try {
             return productoBusiness.listaProducto(tipoProducto);
@@ -31,10 +32,10 @@ public class ProductoController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/producto")
-    public String crearProducto(@RequestBody Producto producto) {
+    public String crearProducto(@RequestBody ProductoDTO productoDTO) {
 
         try {
-            productoBusiness.crearProducto(producto);
+            productoBusiness.crearProducto(productoDTO);
             mensaje = "{\"mensaje\":\"producto guardado correctamente.\"}";
         } catch (Exception e) {
             e.printStackTrace();
@@ -43,16 +44,28 @@ public class ProductoController {
         return mensaje;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/producto/nombreProducto")
+    @RequestMapping(method = RequestMethod.GET, value = "/producto/{nombreProducto}")
     public Producto buscarProducto(@PathVariable("nombreProducto") String nombreProducto) {
-        Producto product = new Producto();
+
         try {
-            product = productoBusiness.buscarProducto(nombreProducto);
+            return productoBusiness.buscarProducto(nombreProducto);
         } catch (Exception e) {
             e.printStackTrace();
-            throw new RuntimeException("Error al buscar producto");
+            throw new RuntimeException("Error al buscar producto.");
         }
-        return product;
+
+    }
+
+    @RequestMapping(method = RequestMethod.PUT, value = "/producto/{idProducto}")
+    public String eliminarMovimiento(@PathVariable("idProducto") int idProducto) {
+        try {
+            productoBusiness.cambiarEstadoProducto(idProducto);
+            mensaje = "{\"mensaje\":\"producto eliminado correctamente.\"}";
+        } catch (Exception e) {
+
+            throw new RuntimeException("Error eliminando producto.");
+        }
+        return mensaje;
     }
 
 }

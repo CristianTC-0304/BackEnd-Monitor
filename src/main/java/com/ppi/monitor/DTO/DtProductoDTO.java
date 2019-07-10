@@ -10,13 +10,32 @@ public class DtProductoDTO {
 
     private Integer iddtProducto;
     private Date fechaMovimiento;
+    private String codigo;
     private String descripcion;
-    private BigDecimal costoProducto;
-    private Integer entrada;
-    private Integer salida;
+    private String tipoMovimiento;
+    private int cantidadUnitaria;
+    private BigDecimal promedioUnitario;
+    private BigDecimal totalUnitario;
+    private BigDecimal promedioTotal;
     private int cantidadTotal;
     private BigDecimal valorTotal;
 
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public BigDecimal getPromedioTotal() {
+        return promedioTotal;
+    }
+
+    public void setPromedioTotal(BigDecimal promedioTotal) {
+        this.promedioTotal = promedioTotal;
+    }
 
     public Integer getIddtProducto() {
         return iddtProducto;
@@ -42,30 +61,6 @@ public class DtProductoDTO {
         this.descripcion = descripcion;
     }
 
-    public BigDecimal getCostoProducto() {
-        return costoProducto;
-    }
-
-    public void setCostoProducto(BigDecimal costoProducto) {
-        this.costoProducto = costoProducto;
-    }
-
-    public Integer getEntrada() {
-        return entrada;
-    }
-
-    public void setEntrada(Integer entrada) {
-        this.entrada = entrada;
-    }
-
-    public Integer getSalida() {
-        return salida;
-    }
-
-    public void setSalida(Integer salida) {
-        this.salida = salida;
-    }
-
     public int getCantidadTotal() {
         return cantidadTotal;
     }
@@ -82,17 +77,53 @@ public class DtProductoDTO {
         this.valorTotal = valorTotal;
     }
 
+    public String getTipoMovimiento() {
+        return tipoMovimiento;
+    }
+
+    public void setTipoMovimiento(String tipoMovimiento) {
+        this.tipoMovimiento = tipoMovimiento;
+    }
+
+    public int getCantidadUnitaria() {
+        return cantidadUnitaria;
+    }
+
+    public void setCantidadUnitaria(int cantidadUnitaria) {
+        this.cantidadUnitaria = cantidadUnitaria;
+    }
+
+    public BigDecimal getPromedioUnitario() {
+        return promedioUnitario;
+    }
+
+    public void setPromedioUnitario(BigDecimal promedioUnitario) {
+        this.promedioUnitario = promedioUnitario;
+    }
+
+    public BigDecimal getTotalUnitario() {
+        return totalUnitario;
+    }
+
+    public void setTotalUnitario(BigDecimal totalUnitario) {
+        this.totalUnitario = totalUnitario;
+    }
+
     @JsonIgnore
     public DtProducto getEntity() {
         DtProducto dtProducto = new DtProducto();
-        dtProducto.setIddtProducto(iddtProducto);
-        dtProducto.setFechaMovimiento(fechaMovimiento);
-        dtProducto.setDescripcion(descripcion);
-        dtProducto.setCostoProducto(costoProducto);
-        dtProducto.setEntrada(entrada);
-        dtProducto.setSalida(salida);
-        dtProducto.setCantidadTotal(cantidadTotal);
-        dtProducto.setValorTotal(valorTotal);
+        dtProducto.setIddtProducto(getIddtProducto());
+        dtProducto.setFechaMovimiento(getFechaMovimiento());
+        dtProducto.setCodigo(getCodigo());
+        dtProducto.setTipoMovimiento(getTipoMovimiento());
+        dtProducto.setDescripcion(getDescripcion());
+        dtProducto.setCantidadUnitaria(getCantidadUnitaria());
+        dtProducto.setPromedioUnitario(getPromedioUnitario());
+        dtProducto.setTotalUnitario(getTotalUnitario());
+        dtProducto.setCantidadTotal(getCantidadTotal());
+        dtProducto.setPromedioTotal(getPromedioTotal());
+        dtProducto.setValorTotal(getValorTotal());
         return dtProducto;
     }
+
 }

@@ -5,6 +5,8 @@
  */
 package com.ppi.monitor.model;
 
+import com.ppi.monitor.DTO.MarcaDTO;
+
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -105,5 +107,13 @@ public class Marca implements Serializable {
     public String toString() {
         return "javaapplication7.Marca[ idMarca=" + idMarca + " ]";
     }
-    
+
+    public MarcaDTO getDTO() {
+        MarcaDTO marcaDTO = new MarcaDTO();
+        marcaDTO.setIdMarca(getIdMarca());
+        marcaDTO.setNombreMarca(getNombreMarca());
+        marcaDTO.setEstado(getEstado());
+        return marcaDTO;
+    }
+
 }

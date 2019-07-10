@@ -43,8 +43,8 @@ public class Ave implements Serializable {
     @Basic(optional = false)
     @Column(name = "tipo_ave")
     private String tipoAve;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ave")
-    private Collection<CostoGranja> costoGranjaCollection;
+   // @OneToMany(cascade = CascadeType.ALL, mappedBy = "ave")
+    //private Collection<CostoGranja> costoGranjaCollection;
 
     public Ave() {
     }
@@ -73,7 +73,7 @@ public class Ave implements Serializable {
     public void setTipoAve(String tipoAve) {
         this.tipoAve = tipoAve;
     }
-
+/*
     @XmlTransient
     public Collection<CostoGranja> getCostoGranjaCollection() {
         return costoGranjaCollection;
@@ -81,7 +81,7 @@ public class Ave implements Serializable {
 
     public void setCostoGranjaCollection(Collection<CostoGranja> costoGranjaCollection) {
         this.costoGranjaCollection = costoGranjaCollection;
-    }
+    }*/
 
     @Override
     public int hashCode() {

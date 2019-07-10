@@ -3,6 +3,7 @@ package com.ppi.monitor.dao.implement;
 import com.ppi.monitor.dao.IProductoDAO;
 import com.ppi.monitor.model.Producto;
 import org.springframework.stereotype.Repository;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
@@ -18,8 +19,8 @@ public class ProductoDAOImplement implements IProductoDAO {
     @Override
     public List<Producto> listaProducto(int idtipoProducto) {
 
-        return entityManager.createNativeQuery("SELECT * FROM Producto WHERE id_tipo_producto = '" + idtipoProducto + "'" ,Producto.class)
-            .getResultList();
+        return entityManager.createNativeQuery("SELECT * FROM Producto WHERE id_tipo_producto = '" + idtipoProducto + "'", Producto.class)
+                .getResultList();
     }
 
     @Override
@@ -32,6 +33,11 @@ public class ProductoDAOImplement implements IProductoDAO {
     @Transactional
     public void actualizarProducto(Producto producto) {
         entityManager.merge(producto);
+    }
+
+    @Override
+    public Producto buscarProductoId(int idProducto) {
+        return entityManager.find(Producto.class,idProducto);
     }
 
     @Override

@@ -11,4 +11,6 @@ public interface IDtProductoDAO {
     void ingresarDtProducto(DtProducto dtProducto);
 
     void actualizarDtProducto(DtProducto dtProducto);
+
+    void eliminarMovimiento(int idDtProducto);
 }

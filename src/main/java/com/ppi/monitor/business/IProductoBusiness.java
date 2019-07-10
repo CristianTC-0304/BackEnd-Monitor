@@ -9,7 +9,9 @@ public interface IProductoBusiness {
 
     public List<ProductoDTO> listaProducto(int tipoProducto);
 
-    void crearProducto(Producto producto);
+    void crearProducto(ProductoDTO productoDTO);
 
-   Producto buscarProducto(String nombreProducto);
+    Producto buscarProducto(String nombreProducto);
+
+    void cambiarEstadoProducto(int idProducto);
 }

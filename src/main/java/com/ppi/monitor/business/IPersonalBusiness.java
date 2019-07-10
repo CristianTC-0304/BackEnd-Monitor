@@ -21,4 +21,6 @@ public interface IPersonalBusiness {
     void actaulizarEstado(int idPersonal);
 
     Personal buscarPorCedula(int documento);
+
+    Personal buscarPorId(int idPersonal);
 }

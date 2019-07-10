@@ -7,14 +7,15 @@ package com.ppi.monitor.dao.implement;
 
 import com.ppi.monitor.dao.IAveDAO;
 import com.ppi.monitor.model.Ave;
+
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Repository;
 
 /**
- *
  * @author andreshincapie
  */
 @Repository
@@ -38,6 +39,12 @@ public class AveDAOImplement implements IAveDAO {
     @Transactional
     public void actualizarTipoAve(Ave ave) {
         entityManager.merge(ave);
+    }
+
+    @Override
+    public void eliminarAve(int idAve) {
+        Ave ave = entityManager.find(Ave.class, idAve);
+        entityManager.remove(ave);
     }
 
 }
