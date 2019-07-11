@@ -19,6 +19,8 @@ public interface IAveDAO {
     void crearTipoAve(Ave ave);
 
     void actualizarTipoAve(Ave ave);
+
+    void eliminarAve(int idAve);
     
     
 

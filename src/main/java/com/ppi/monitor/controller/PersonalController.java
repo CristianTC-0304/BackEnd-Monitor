@@ -7,8 +7,10 @@ package com.ppi.monitor.controller;
 
 import com.ppi.monitor.business.IPersonalBusiness;
 import com.ppi.monitor.model.Personal;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,11 +20,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- *
  * @author 57314
  */
 @RestController
-@RequestMapping( value= "/monitor")
+@RequestMapping(value = "/monitor")
 @CrossOrigin(origins = "*", methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT})
 public class PersonalController {
 
@@ -54,7 +55,7 @@ public class PersonalController {
         return mensaje;
     }
 
-    @RequestMapping(method = RequestMethod.GET, value = "/personal/documento/{documento}")
+    @RequestMapping(method = RequestMethod.GET, value = "/personal/{documento}")
     public Personal buscarPorCedula(@PathVariable("documento") int documento) {
         Personal personal = new Personal();
         try {
@@ -64,6 +65,18 @@ public class PersonalController {
             throw new RuntimeException("Error buscando personal");
         }
         return personal;
+
+
+    }
+
+    @RequestMapping(method = RequestMethod.GET, value = "/personalId/{documento}")
+    public Personal buscarPorId(@PathVariable("documento") int idPersonal) {
+        try {
+            return personalBusiness.buscarPorId(idPersonal);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error buscando personal");
+        }
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/personal/{idPersonal}")

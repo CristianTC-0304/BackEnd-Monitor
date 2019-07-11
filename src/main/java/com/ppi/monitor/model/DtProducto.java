@@ -36,11 +36,14 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "DtProducto.findAll", query = "SELECT d FROM DtProducto d")
     , @NamedQuery(name = "DtProducto.findByIddtProducto", query = "SELECT d FROM DtProducto d WHERE d.iddtProducto = :iddtProducto")
     , @NamedQuery(name = "DtProducto.findByFechaMovimiento", query = "SELECT d FROM DtProducto d WHERE d.fechaMovimiento = :fechaMovimiento")
+    , @NamedQuery(name = "DtProducto.findByCodigo", query = "SELECT d FROM DtProducto d WHERE d.codigo = :codigo")
     , @NamedQuery(name = "DtProducto.findByDescripcion", query = "SELECT d FROM DtProducto d WHERE d.descripcion = :descripcion")
-    , @NamedQuery(name = "DtProducto.findByCostoProducto", query = "SELECT d FROM DtProducto d WHERE d.costoProducto = :costoProducto")
-    , @NamedQuery(name = "DtProducto.findByEntrada", query = "SELECT d FROM DtProducto d WHERE d.entrada = :entrada")
-    , @NamedQuery(name = "DtProducto.findBySalida", query = "SELECT d FROM DtProducto d WHERE d.salida = :salida")
+    , @NamedQuery(name = "DtProducto.findByTipoMovimiento", query = "SELECT d FROM DtProducto d WHERE d.tipoMovimiento = :tipoMovimiento")
+    , @NamedQuery(name = "DtProducto.findByCantidadUnitaria", query = "SELECT d FROM DtProducto d WHERE d.cantidadUnitaria = :cantidadUnitaria")
+    , @NamedQuery(name = "DtProducto.findByPromedioUnitario", query = "SELECT d FROM DtProducto d WHERE d.promedioUnitario = :promedioUnitario")
+    , @NamedQuery(name = "DtProducto.findByTotalUnitario", query = "SELECT d FROM DtProducto d WHERE d.totalUnitario = :totalUnitario")
     , @NamedQuery(name = "DtProducto.findByCantidadTotal", query = "SELECT d FROM DtProducto d WHERE d.cantidadTotal = :cantidadTotal")
+    , @NamedQuery(name = "DtProducto.findByPromedioTotal", query = "SELECT d FROM DtProducto d WHERE d.promedioTotal = :promedioTotal")
     , @NamedQuery(name = "DtProducto.findByValorTotal", query = "SELECT d FROM DtProducto d WHERE d.valorTotal = :valorTotal")})
 public class DtProducto implements Serializable {
 
@@ -54,19 +57,30 @@ public class DtProducto implements Serializable {
     @Column(name = "fecha_movimiento")
     @Temporal(TemporalType.DATE)
     private Date fechaMovimiento;
+    @Column(name = "codigo")
+    private String codigo;
+    @Basic(optional = false)
     @Column(name = "descripcion")
     private String descripcion;
+    @Basic(optional = false)
+    @Column(name = "tipo_movimiento")
+    private String tipoMovimiento;
+    @Basic(optional = false)
+    @Column(name = "cantidad_unitaria")
+    private int cantidadUnitaria;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Basic(optional = false)
-    @Column(name = "costo_producto")
-    private BigDecimal costoProducto;
-    @Column(name = "entrada")
-    private Integer entrada;
-    @Column(name = "salida")
-    private Integer salida;
+    @Column(name = "promedio_unitario")
+    private BigDecimal promedioUnitario;
+    @Basic(optional = false)
+    @Column(name = "total_unitario")
+    private BigDecimal totalUnitario;
     @Basic(optional = false)
     @Column(name = "cantidad_total")
     private int cantidadTotal;
+    @Basic(optional = false)
+    @Column(name = "promedio_total")
+    private BigDecimal promedioTotal;
     @Basic(optional = false)
     @Column(name = "valor_total")
     private BigDecimal valorTotal;
@@ -81,11 +95,16 @@ public class DtProducto implements Serializable {
         this.iddtProducto = iddtProducto;
     }
 
-    public DtProducto(Integer iddtProducto, Date fechaMovimiento, BigDecimal costoProducto, int cantidadTotal, BigDecimal valorTotal) {
+    public DtProducto(Integer iddtProducto, Date fechaMovimiento, String descripcion, String tipoMovimiento, int cantidadUnitaria, BigDecimal promedioUnitario, BigDecimal totalUnitario, int cantidadTotal, BigDecimal promedioTotal, BigDecimal valorTotal) {
         this.iddtProducto = iddtProducto;
         this.fechaMovimiento = fechaMovimiento;
-        this.costoProducto = costoProducto;
+        this.descripcion = descripcion;
+        this.tipoMovimiento = tipoMovimiento;
+        this.cantidadUnitaria = cantidadUnitaria;
+        this.promedioUnitario = promedioUnitario;
+        this.totalUnitario = totalUnitario;
         this.cantidadTotal = cantidadTotal;
+        this.promedioTotal = promedioTotal;
         this.valorTotal = valorTotal;
     }
 
@@ -105,6 +124,14 @@ public class DtProducto implements Serializable {
         this.fechaMovimiento = fechaMovimiento;
     }
 
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
     public String getDescripcion() {
         return descripcion;
     }
@@ -113,28 +140,36 @@ public class DtProducto implements Serializable {
         this.descripcion = descripcion;
     }
 
-    public BigDecimal getCostoProducto() {
-        return costoProducto;
+    public String getTipoMovimiento() {
+        return tipoMovimiento;
     }
 
-    public void setCostoProducto(BigDecimal costoProducto) {
-        this.costoProducto = costoProducto;
+    public void setTipoMovimiento(String tipoMovimiento) {
+        this.tipoMovimiento = tipoMovimiento;
     }
 
-    public Integer getEntrada() {
-        return entrada;
+    public int getCantidadUnitaria() {
+        return cantidadUnitaria;
     }
 
-    public void setEntrada(Integer entrada) {
-        this.entrada = entrada;
+    public void setCantidadUnitaria(int cantidadUnitaria) {
+        this.cantidadUnitaria = cantidadUnitaria;
     }
 
-    public Integer getSalida() {
-        return salida;
+    public BigDecimal getPromedioUnitario() {
+        return promedioUnitario;
     }
 
-    public void setSalida(Integer salida) {
-        this.salida = salida;
+    public void setPromedioUnitario(BigDecimal promedioUnitario) {
+        this.promedioUnitario = promedioUnitario;
+    }
+
+    public BigDecimal getTotalUnitario() {
+        return totalUnitario;
+    }
+
+    public void setTotalUnitario(BigDecimal totalUnitario) {
+        this.totalUnitario = totalUnitario;
     }
 
     public int getCantidadTotal() {
@@ -143,6 +178,14 @@ public class DtProducto implements Serializable {
 
     public void setCantidadTotal(int cantidadTotal) {
         this.cantidadTotal = cantidadTotal;
+    }
+
+    public BigDecimal getPromedioTotal() {
+        return promedioTotal;
+    }
+
+    public void setPromedioTotal(BigDecimal promedioTotal) {
+        this.promedioTotal = promedioTotal;
     }
 
     public BigDecimal getValorTotal() {
@@ -187,17 +230,19 @@ public class DtProducto implements Serializable {
     }
 
 
-    public DtProductoDTO getDTO(){
+    public DtProductoDTO getDTO() {
         DtProductoDTO dtProductoDTO = new DtProductoDTO();
-        dtProductoDTO.setIddtProducto(iddtProducto);
-        dtProductoDTO.setFechaMovimiento(fechaMovimiento);
-        dtProductoDTO.setDescripcion(descripcion);
-        dtProductoDTO.setCostoProducto(costoProducto);
-        dtProductoDTO.setEntrada(entrada);
-        dtProductoDTO.setSalida(salida);
-        dtProductoDTO.setCantidadTotal(cantidadTotal);
-        dtProductoDTO.setValorTotal(valorTotal);
+        dtProductoDTO.setIddtProducto(getIddtProducto());
+        dtProductoDTO.setFechaMovimiento(getFechaMovimiento());
+        dtProductoDTO.setCodigo(getCodigo());
+        dtProductoDTO.setTipoMovimiento(getTipoMovimiento());
+        dtProductoDTO.setDescripcion(getDescripcion());
+        dtProductoDTO.setCantidadUnitaria(getCantidadUnitaria());
+        dtProductoDTO.setPromedioUnitario(getPromedioUnitario());
+        dtProductoDTO.setTotalUnitario(getTotalUnitario());
+        dtProductoDTO.setCantidadTotal(getCantidadTotal());
+        dtProductoDTO.setPromedioTotal(getPromedioTotal());
+        dtProductoDTO.setValorTotal(getValorTotal());
         return dtProductoDTO;
     }
-
 }

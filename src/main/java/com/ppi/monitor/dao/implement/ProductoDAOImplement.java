@@ -36,6 +36,11 @@ public class ProductoDAOImplement implements IProductoDAO {
     }
 
     @Override
+    public Producto buscarProductoId(int idProducto) {
+        return entityManager.find(Producto.class,idProducto);
+    }
+
+    @Override
     public Producto buscarProducto(String nombreProducto) {
         Producto producto = new Producto();
         try {

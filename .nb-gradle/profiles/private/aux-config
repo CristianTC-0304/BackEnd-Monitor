@@ -7,15 +7,17 @@
       <group>
         <file>file:/C:/Users/57314/Documents/BackEnd-Monitor/src/main/java/com/ppi/monitor/model/Producto.java</file>
         <file>file:/C:/Users/57314/Documents/BackEnd-Monitor/src/main/java/com/ppi/monitor/business/implement/ProductoBusinessImplement.java</file>
+        <file>file:/C:/Users/57314/Documents/BackEnd-Monitor/src/main/java/com/ppi/monitor/model/DtProducto.java</file>
+        <file>file:/C:/Users/57314/Documents/BackEnd-Monitor/src/main/java/com/ppi/monitor/model/CostoAvicola.java</file>
       </group>
     </open-files>
     <editor-bookmarks lastBookmarkId="0" xmlns="http://www.netbeans.org/ns/editor-bookmarks/2"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
       <group>
         <file>file:/C:/Users/57314/Documents/BackEnd-Monitor/src/main/java/com/ppi/monitor/model/Producto.java</file>
-        <file>file:/C:/Users/57314/Documents/BackEnd-Monitor/src/main/java/com/ppi/monitor/model/CostoGranja.java</file>
         <file>file:/C:/Users/57314/Documents/BackEnd-Monitor/src/main/java/com/ppi/monitor/business/implement/ProductoBusinessImplement.java</file>
         <file>file:/C:/Users/57314/Documents/BackEnd-Monitor/src/main/java/com/ppi/monitor/model/DtProducto.java</file>
+        <file>file:/C:/Users/57314/Documents/BackEnd-Monitor/src/main/java/com/ppi/monitor/model/CostoAvicola.java</file>
       </group>
     </open-files>
   </auxiliary>

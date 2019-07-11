@@ -9,13 +9,14 @@ import com.ppi.monitor.business.IAveBusiness;
 import com.ppi.monitor.dao.IAveDAO;
 import com.ppi.monitor.model.Ave;
 import com.ppi.monitor.util.StringUtil;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- *
  * @author andreshincapie
  */
 @Service
@@ -26,15 +27,12 @@ public class AveBusinessImplemet implements IAveBusiness {
 
     @Override
     public List<Ave> listaAve() {
-        List<Ave> list = new ArrayList<>();
         try {
-            list = aveDAO.listaAve();
+            return aveDAO.listaAve();
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Error listado tipos de ave.");
         }
-        return list;
-
     }
 
     @Override
@@ -52,6 +50,14 @@ public class AveBusinessImplemet implements IAveBusiness {
         }
     }
 
-    
+    @Override
+    public void eliminarTipoAve(int idAve) {
+        try {
+            aveDAO.eliminarAve(idAve);
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error elimindo el tipo de ave");
+        }
+    }
 
 }

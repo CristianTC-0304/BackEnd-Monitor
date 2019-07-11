@@ -33,4 +33,11 @@ public class DtProductoDAOImplement implements IDtProductoDAO {
         entityManager.merge(dtProducto);
     }
 
+    @Override
+    @Transactional
+    public void eliminarMovimiento(int idDtProducto) {
+        DtProducto dtProducto = entityManager.find(DtProducto.class, idDtProducto);
+        entityManager.remove(dtProducto);
+    }
+
 }

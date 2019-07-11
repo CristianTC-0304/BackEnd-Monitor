@@ -18,4 +18,6 @@ public interface IAveBusiness {
 
     void crearTipoAve(Ave ave);
 
+    void eliminarTipoAve(int idAve);
+
 }

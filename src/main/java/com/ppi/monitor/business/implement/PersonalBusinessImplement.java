@@ -69,6 +69,17 @@ public class PersonalBusinessImplement implements IPersonalBusiness {
     }
 
     @Override
+    public Personal buscarPorId(int idPersonal) {
+       Personal personal = new Personal();
+        try {
+           personal = personalDAO.buscarPersonal(idPersonal);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return personal;
+    }
+
+    @Override
     public void actaulizarEstado(int idPersonal) {
         Personal personal = personalDAO.buscarPersonal(idPersonal);
         try {

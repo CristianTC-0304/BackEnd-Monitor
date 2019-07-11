@@ -12,9 +12,9 @@ public class ProductoDTO {
     private Integer idproducto;
     private String codProducto;
     private String nombreProducto;
-    private String marcaProducto;
+    private MarcaDTO marcaDTO;
     private String unidadMedida;
-    private Date fechaVencimiento;
+    private int estado;
     private TipoProductoDTO TipoProductoDTO;
     private List<DtProductoDTO> listaDtProductoDTO;
 
@@ -43,28 +43,12 @@ public class ProductoDTO {
         this.nombreProducto = nombreProducto;
     }
 
-    public String getMarcaProducto() {
-        return marcaProducto;
-    }
-
-    public void setMarcaProducto(String marcaProducto) {
-        this.marcaProducto = marcaProducto;
-    }
-
     public String getUnidadMedida() {
         return unidadMedida;
     }
 
     public void setUnidadMedida(String unidadMedida) {
         this.unidadMedida = unidadMedida;
-    }
-
-    public Date getFechaVencimiento() {
-        return fechaVencimiento;
-    }
-
-    public void setFechaVencimiento(Date fechaVencimiento) {
-        this.fechaVencimiento = fechaVencimiento;
     }
 
     public TipoProductoDTO getTipoProductoDTO() {
@@ -83,17 +67,34 @@ public class ProductoDTO {
         this.listaDtProductoDTO = listaDtProductoDTO;
     }
 
+    public int getEstado() {
+        return estado;
+    }
+
+    public void setEstado(int estado) {
+        this.estado = estado;
+    }
+
+    public MarcaDTO getMarcaDTO() {
+        return marcaDTO;
+    }
+
+    public void setMarcaDTO(MarcaDTO marcaDTO) {
+        this.marcaDTO = marcaDTO;
+    }
+
     @JsonIgnore
     public Producto getEntity() {
         Producto producto = new Producto();
         producto.setIdproducto(idproducto);
         producto.setCodProducto(codProducto);
         producto.setNombreProducto(nombreProducto);
-        producto.setMarcaProducto(marcaProducto);
+        producto.setMarcaProducto(marcaDTO.getEntity());
         producto.setUnidadMedida(unidadMedida);
-        producto.setFechaVencimiento(fechaVencimiento);
         producto.setIdTipoProducto(TipoProductoDTO.getEntity());
+        producto.setEstado(estado);
         return producto;
     }
+
 
 }

@@ -7,15 +7,16 @@ package com.ppi.monitor.dao.implement;
 
 import com.ppi.monitor.dao.IPersonalDAO;
 import com.ppi.monitor.model.Personal;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
+
 import org.springframework.stereotype.Repository;
 
 /**
- *
  * @author 57314
  */
 @Repository
@@ -47,19 +48,22 @@ public class PersonalDAOImplement implements IPersonalDAO {
         return entityManager.find(Personal.class, idPersonal);
     }
 
+
+
     @Override
     public Personal bucarPersonalPorCedula(int documento) {
+        List<Personal> personalList = new ArrayList<>();
         Personal personal = new Personal();
         try {
-            ArrayList<Personal> setParameter = (ArrayList<Personal>) entityManager.createQuery("SELECT p FROM Personal p WHERE p.documento = :documento", Personal.class)
+            personalList = entityManager.createNativeQuery("SELECT * FROM personal WHERE documento = '" + documento + "'", Personal.class)
                     .setParameter("documento", documento).getResultList();
-            if (!setParameter.isEmpty()) {
-                personal = setParameter.get(0);
-            }
-        } catch (Exception e) {
-        }
-        return personal;
+            personal = personalList.get(0);
 
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return personal;
     }
 
 }
