@@ -55,4 +55,17 @@ public class ProductoController {
         return product;
     }
 
+    @RequestMapping(method = RequestMethod.PUT, value = "/producto/{idProducto}")
+    public String cambiarEstadoProducto(int idProducto) {
+
+        try {
+            productoBusiness.cambiarEstadoProducto(idProducto);
+            mensaje = "{\"mensaje\":\"Producto eliminado.\"}";
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error al eliminar producto");
+        }
+        return mensaje;
+    }
+
 }

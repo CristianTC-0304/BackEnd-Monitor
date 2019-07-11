@@ -11,5 +11,7 @@ public interface IProductoBusiness {
 
     void crearProducto(Producto producto);
 
-   Producto buscarProducto(String nombreProducto);
+    Producto buscarProducto(String nombreProducto);
+
+    void cambiarEstadoProducto(int idProducto);
 }

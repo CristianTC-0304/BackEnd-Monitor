@@ -31,6 +31,7 @@ public class ProduccionHuevoDAOImplement implements IProduccionHuevoDAO {
     @Override
     @Transactional
     public void actualizarIngresoHuevo(ProduccionHuevo produccionHuevo) {
+
         entityManager.merge(produccionHuevo);
     }
 }
