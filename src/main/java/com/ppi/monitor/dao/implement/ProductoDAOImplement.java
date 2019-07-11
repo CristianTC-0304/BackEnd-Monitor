@@ -55,10 +55,10 @@ public class ProductoDAOImplement implements IProductoDAO {
         return producto;
     }
 
-    @Override
-    public Producto buscarProductoId(int idProducto) {
-
-        return entityManager.find(Producto.class, idProducto);
-    }
+//    @Override
+//    public Producto buscarProductoId(int idProducto) {
+//
+//        return entityManager.find(Producto.class, idProducto);
+//    }
 
 }

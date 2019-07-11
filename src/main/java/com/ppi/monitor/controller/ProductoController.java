@@ -56,17 +56,17 @@ public class ProductoController {
 
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/producto/{idProducto}")
-    public String eliminarMovimiento(@PathVariable("idProducto") int idProducto) {
-        try {
-            productoBusiness.cambiarEstadoProducto(idProducto);
-            mensaje = "{\"mensaje\":\"producto eliminado correctamente.\"}";
-        } catch (Exception e) {
-
-            throw new RuntimeException("Error eliminando producto.");
-        }
-        return mensaje;
-    }
+//    @RequestMapping(method = RequestMethod.PUT, value = "/producto/{idProducto}")
+//    public String eliminarMovimiento(@PathVariable("idProducto") int idProducto) {
+//        try {
+//            productoBusiness.cambiarEstadoProducto(idProducto);
+//            mensaje = "{\"mensaje\":\"producto eliminado correctamente.\"}";
+//        } catch (Exception e) {
+//
+//            throw new RuntimeException("Error eliminando producto.");
+//        }
+//        return mensaje;
+//    }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/producto/{idProducto}")
     public String cambiarEstadoProducto(int idProducto) {

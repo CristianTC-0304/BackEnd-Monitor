@@ -122,18 +122,7 @@ public class ProductoBusinessImplement implements IProductoBusiness {
 
     @Override
     public void cambiarEstadoProducto(int idProducto) {
-<<<<<<< HEAD
-        Producto producto = productoDAO.buscarProductoId(idProducto);
-        try {
-            producto.setEstado(1);
-            productoDAO.actualizarProducto(producto);
-            // validar si hay cambio de estado en dt producto
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Producto eliminado correctamente");
-        }
 
-=======
         Producto product = productoDAO.buscarProductoId(idProducto);
         try {
             product.setEstado(0);
@@ -142,6 +131,5 @@ public class ProductoBusinessImplement implements IProductoBusiness {
             e.printStackTrace();
             throw new RuntimeException("Error eliminado producto.");
         }
->>>>>>> af9b6e2a5cd95db544b97df8f79928e5810b6f88
     }
 }
