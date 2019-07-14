@@ -29,6 +29,7 @@ public class ProductoDAOImplement implements IProductoDAO {
         entityManager.persist(producto);
     }
 
+
     @Override
     @Transactional
     public void actualizarProducto(Producto producto) {
@@ -55,10 +56,5 @@ public class ProductoDAOImplement implements IProductoDAO {
         return producto;
     }
 
-    @Override
-    public Producto buscarProductoId(int idProducto) {
-
-        return entityManager.find(Producto.class, idProducto);
-    }
 
 }

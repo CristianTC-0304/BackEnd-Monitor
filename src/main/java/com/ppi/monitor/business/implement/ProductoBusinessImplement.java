@@ -58,7 +58,7 @@ public class ProductoBusinessImplement implements IProductoBusiness {
     }
 
     @Override
-    public void crearProducto(ProductoDTO productoDTO) {
+    public ProductoDTO crearProducto(ProductoDTO productoDTO) {
         Producto product = productoDTO.getEntity();
         ProductoDTO productDTO;
         try {
@@ -74,6 +74,7 @@ public class ProductoBusinessImplement implements IProductoBusiness {
                 productDTO = product.getDTO();
                 productDTO.setListaDtProductoDTO(listDtProductoDTO);
             }
+            return productDTO;
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Error guardando producto.");
@@ -122,7 +123,7 @@ public class ProductoBusinessImplement implements IProductoBusiness {
 
     @Override
     public void cambiarEstadoProducto(int idProducto) {
-<<<<<<< HEAD
+
         Producto producto = productoDAO.buscarProductoId(idProducto);
         try {
             producto.setEstado(1);
@@ -133,15 +134,5 @@ public class ProductoBusinessImplement implements IProductoBusiness {
             throw new RuntimeException("Producto eliminado correctamente");
         }
 
-=======
-        Producto product = productoDAO.buscarProductoId(idProducto);
-        try {
-            product.setEstado(0);
-            productoDAO.actualizarProducto(product);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error eliminado producto.");
-        }
->>>>>>> af9b6e2a5cd95db544b97df8f79928e5810b6f88
     }
 }

@@ -32,16 +32,16 @@ public class ProductoController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/producto")
-    public String crearProducto(@RequestBody ProductoDTO productoDTO) {
+    public ProductoDTO crearProducto(@RequestBody ProductoDTO productoDTO) {
 
         try {
-            productoBusiness.crearProducto(productoDTO);
-            mensaje = "{\"mensaje\":\"producto guardado correctamente.\"}";
+            return productoBusiness.crearProducto(productoDTO);
+
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Error guardando producto");
         }
-        return mensaje;
+
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/producto/{nombreProducto}")
