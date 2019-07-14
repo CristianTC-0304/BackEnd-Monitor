@@ -17,12 +17,13 @@ public class CostoAvicolaDAOImplement implements ICostoAviculaDAO {
 
     @Override
     public List<CostoAvicola> listaCostoMensual() {
-        return entityManager.createQuery("", CostoAvicola.class).getResultList();
+        return entityManager.createQuery("SELECT c FROM CostoAvicola c", CostoAvicola.class).getResultList();
     }
 
     @Override
     @Transactional
     public void ingresarCostoAvicola(CostoAvicola costoAvicola) {
+
         entityManager.persist(costoAvicola);
     }
 

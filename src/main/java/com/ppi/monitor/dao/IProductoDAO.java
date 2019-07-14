@@ -16,5 +16,5 @@ public interface IProductoDAO {
 
     Producto buscarProducto(String nombreProducto);
 
-    Producto buscarProductoId(int idProducto);
+   
 }

@@ -19,7 +19,7 @@ public class ProductoController {
     private IProductoBusiness productoBusiness;
 
     private String mensaje;
-    private int idProducto;
+
 
     @RequestMapping(method = RequestMethod.GET, value = "/productos/{tipoProducto}")
     public List<ProductoDTO> listaProducto(@PathVariable("tipoProducto") int tipoProducto) {
@@ -56,7 +56,7 @@ public class ProductoController {
 
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/producto/{idProducto}")
+    @RequestMapping(method = RequestMethod.DELETE, value = "/producto/{idProducto}")
     public String eliminarMovimiento(@PathVariable("idProducto") int idProducto) {
         try {
             productoBusiness.cambiarEstadoProducto(idProducto);
@@ -69,7 +69,7 @@ public class ProductoController {
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/producto/{idProducto}")
-    public String cambiarEstadoProducto(int idProducto) {
+    public String cambiarEstadoProducto(@PathVariable("idProducto")int idProducto) {
 
         try {
             productoBusiness.cambiarEstadoProducto(idProducto);

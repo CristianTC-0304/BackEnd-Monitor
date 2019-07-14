@@ -8,10 +8,17 @@ import com.ppi.monitor.dao.IProductoDAO;
 import com.ppi.monitor.model.DtProducto;
 import com.ppi.monitor.model.Producto;
 import com.ppi.monitor.util.StringUtil;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.math.MathContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -83,16 +90,20 @@ public class ProductoBusinessImplement implements IProductoBusiness {
     private List<DtProductoDTO> ingresoDtProducto(List<DtProductoDTO> list, ProductoDTO productoDTO) {
         List<DtProductoDTO> listDtproductoDto = new ArrayList<>();
         DtProducto dtProducto;
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         try {
             if (list.size() > 0) {
                 int i = 0;
                 for (DtProductoDTO dtProductoDTO : list) {
                     if (StringUtil.isNullOrEmpty(list.get(i).getIddtProducto())) {
+
                         dtProducto = dtProductoDTO.getEntity();
+                        dtProducto.setFechaMovimiento(dtProductoDTO.getFechaMovimiento());
                         dtProducto.setIdProducto(new Producto(productoDTO.getEntity().getIdproducto()));
                         dtProductoDAO.ingresarDtProducto(dtProducto);
                     } else {
                         dtProducto = dtProductoDTO.getEntity();
+                        dtProducto.setFechaMovimiento(dtProductoDTO.getFechaMovimiento());
                         dtProducto.setIdProducto(new Producto(productoDTO.getEntity().getIdproducto()));
                         dtProductoDAO.actualizarDtProducto(dtProducto);
                     }
@@ -122,7 +133,7 @@ public class ProductoBusinessImplement implements IProductoBusiness {
 
     @Override
     public void cambiarEstadoProducto(int idProducto) {
-<<<<<<< HEAD
+
         Producto producto = productoDAO.buscarProductoId(idProducto);
         try {
             producto.setEstado(1);
@@ -133,15 +144,5 @@ public class ProductoBusinessImplement implements IProductoBusiness {
             throw new RuntimeException("Producto eliminado correctamente");
         }
 
-=======
-        Producto product = productoDAO.buscarProductoId(idProducto);
-        try {
-            product.setEstado(0);
-            productoDAO.actualizarProducto(product);
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Error eliminado producto.");
-        }
->>>>>>> af9b6e2a5cd95db544b97df8f79928e5810b6f88
     }
 }

@@ -7,19 +7,25 @@ package com.ppi.monitor.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Collection;
 import java.util.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -48,11 +54,13 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "CostoAvicola.findByValorMortalidad", query = "SELECT c FROM CostoAvicola c WHERE c.valorMortalidad = :valorMortalidad")
     , @NamedQuery(name = "CostoAvicola.findBySubTotal", query = "SELECT c FROM CostoAvicola c WHERE c.subTotal = :subTotal")
     , @NamedQuery(name = "CostoAvicola.findByGranTotal", query = "SELECT c FROM CostoAvicola c WHERE c.granTotal = :granTotal")
-    , @NamedQuery(name = "CostoAvicola.findByDepresiacion", query = "SELECT c FROM CostoAvicola c WHERE c.depresiacion = :depresiacion")})
+    , @NamedQuery(name = "CostoAvicola.findByDepresiacion", query = "SELECT c FROM CostoAvicola c WHERE c.depresiacion = :depresiacion")
+    , @NamedQuery(name = "CostoAvicola.findByServiciosPublicos", query = "SELECT c FROM CostoAvicola c WHERE c.serviciosPublicos = :serviciosPublicos")})
 public class CostoAvicola implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "idcosto_avicola")
     private Integer idcostoAvicola;
@@ -112,9 +120,14 @@ public class CostoAvicola implements Serializable {
     @Basic(optional = false)
     @Column(name = "depresiacion")
     private BigDecimal depresiacion;
+    @Basic(optional = false)
+    @Column(name = "servicios_publicos")
+    private BigDecimal serviciosPublicos;
     @JoinColumn(name = "ave", referencedColumnName = "id_ave")
     @ManyToOne(optional = false)
     private Ave ave;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCostoAvicola")
+    private Collection<DtCostoAvicola> dtCostoAvicolaCollection;
 
     public CostoAvicola() {
     }
@@ -123,7 +136,7 @@ public class CostoAvicola implements Serializable {
         this.idcostoAvicola = idcostoAvicola;
     }
 
-    public CostoAvicola(Integer idcostoAvicola, int semanaPolla, Date fechaCreacion, String planta, BigDecimal costoAlimento, int cantidadKg, BigDecimal totalAlojamiento, BigDecimal totalManoObra, BigDecimal amortizacion, BigDecimal totalVacunas, BigDecimal despique, BigDecimal calefacion, BigDecimal viruta, BigDecimal empaque, String mortalidad, BigDecimal valorMortalidad, BigDecimal subTotal, BigDecimal granTotal, BigDecimal depresiacion) {
+    public CostoAvicola(Integer idcostoAvicola, int semanaPolla, Date fechaCreacion, String planta, BigDecimal costoAlimento, int cantidadKg, BigDecimal totalAlojamiento, BigDecimal totalManoObra, BigDecimal amortizacion, BigDecimal totalVacunas, BigDecimal despique, BigDecimal calefacion, BigDecimal viruta, BigDecimal empaque, String mortalidad, BigDecimal valorMortalidad, BigDecimal subTotal, BigDecimal granTotal, BigDecimal depresiacion, BigDecimal serviciosPublicos) {
         this.idcostoAvicola = idcostoAvicola;
         this.semanaPolla = semanaPolla;
         this.fechaCreacion = fechaCreacion;
@@ -143,6 +156,7 @@ public class CostoAvicola implements Serializable {
         this.subTotal = subTotal;
         this.granTotal = granTotal;
         this.depresiacion = depresiacion;
+        this.serviciosPublicos = serviciosPublicos;
     }
 
     public Integer getIdcostoAvicola() {
@@ -297,12 +311,29 @@ public class CostoAvicola implements Serializable {
         this.depresiacion = depresiacion;
     }
 
+    public BigDecimal getServiciosPublicos() {
+        return serviciosPublicos;
+    }
+
+    public void setServiciosPublicos(BigDecimal serviciosPublicos) {
+        this.serviciosPublicos = serviciosPublicos;
+    }
+
     public Ave getAve() {
         return ave;
     }
 
     public void setAve(Ave ave) {
         this.ave = ave;
+    }
+
+    @XmlTransient
+    public Collection<DtCostoAvicola> getDtCostoAvicolaCollection() {
+        return dtCostoAvicolaCollection;
+    }
+
+    public void setDtCostoAvicolaCollection(Collection<DtCostoAvicola> dtCostoAvicolaCollection) {
+        this.dtCostoAvicolaCollection = dtCostoAvicolaCollection;
     }
 
     @Override

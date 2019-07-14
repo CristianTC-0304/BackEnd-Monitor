@@ -245,4 +245,8 @@ public class DtProducto implements Serializable {
         dtProductoDTO.setValorTotal(getValorTotal());
         return dtProductoDTO;
     }
+
+    public void setValorTotal() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
