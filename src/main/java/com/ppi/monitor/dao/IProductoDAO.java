@@ -12,7 +12,7 @@ public interface IProductoDAO {
 
     void actualizarProducto(Producto producto);
 
-    Producto buscarProductoId(int idProducto);
+     Producto buscarProductoId(int idProducto);
 
     Producto buscarProducto(String nombreProducto);
 
