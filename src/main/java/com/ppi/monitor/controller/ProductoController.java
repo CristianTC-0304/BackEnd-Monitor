@@ -32,16 +32,16 @@ public class ProductoController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/producto")
-    public String crearProducto(@RequestBody ProductoDTO productoDTO) {
+    public ProductoDTO crearProducto(@RequestBody ProductoDTO productoDTO) {
 
         try {
-            productoBusiness.crearProducto(productoDTO);
-            mensaje = "{\"mensaje\":\"producto guardado correctamente.\"}";
+            return productoBusiness.crearProducto(productoDTO);
+
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Error guardando producto");
         }
-        return mensaje;
+
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/producto/{nombreProducto}")
@@ -56,6 +56,7 @@ public class ProductoController {
 
     }
 
+<<<<<<< HEAD
     @RequestMapping(method = RequestMethod.DELETE, value = "/producto/{idProducto}")
     public String eliminarMovimiento(@PathVariable("idProducto") int idProducto) {
         try {
@@ -67,6 +68,19 @@ public class ProductoController {
         }
         return mensaje;
     }
+=======
+//    @RequestMapping(method = RequestMethod.PUT, value = "/producto/{idProducto}")
+//    public String eliminarMovimiento(@PathVariable("idProducto") int idProducto) {
+//        try {
+//            productoBusiness.cambiarEstadoProducto(idProducto);
+//            mensaje = "{\"mensaje\":\"producto eliminado correctamente.\"}";
+//        } catch (Exception e) {
+//
+//            throw new RuntimeException("Error eliminando producto.");
+//        }
+//        return mensaje;
+//    }
+>>>>>>> a8ef4be743bc4e7b32f560f7e5c5a834489e82ff
 
     @RequestMapping(method = RequestMethod.PUT, value = "/producto/{idProducto}")
     public String cambiarEstadoProducto(@PathVariable("idProducto")int idProducto) {

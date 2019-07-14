@@ -65,7 +65,7 @@ public class ProductoBusinessImplement implements IProductoBusiness {
     }
 
     @Override
-    public void crearProducto(ProductoDTO productoDTO) {
+    public ProductoDTO crearProducto(ProductoDTO productoDTO) {
         Producto product = productoDTO.getEntity();
         ProductoDTO productDTO;
         try {
@@ -81,6 +81,7 @@ public class ProductoBusinessImplement implements IProductoBusiness {
                 productDTO = product.getDTO();
                 productDTO.setListaDtProductoDTO(listDtProductoDTO);
             }
+            return productDTO;
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Error guardando producto.");
