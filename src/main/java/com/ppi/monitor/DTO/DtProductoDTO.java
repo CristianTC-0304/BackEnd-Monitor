@@ -5,6 +5,7 @@ import com.ppi.monitor.model.DtProducto;
 
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 public class DtProductoDTO {
 
@@ -19,6 +20,7 @@ public class DtProductoDTO {
     private BigDecimal promedioTotal;
     private int cantidadTotal;
     private BigDecimal valorTotal;
+    private List<DtProductoDTO> dtProductoDTOS;
 
 
     public String getCodigo() {
@@ -108,6 +110,14 @@ public class DtProductoDTO {
     public void setTotalUnitario(BigDecimal totalUnitario) {
         this.totalUnitario = totalUnitario;
     }
+    
+    public List<DtProductoDTO> getDtProductoDTOS() {
+        return dtProductoDTOS;
+    }
+
+    public void setDtProductoDTOS(List<DtProductoDTO> dtProductoDTOS) {
+        this.dtProductoDTOS = dtProductoDTOS;
+    }
 
     @JsonIgnore
     public DtProducto getEntity() {
@@ -125,5 +135,6 @@ public class DtProductoDTO {
         dtProducto.setValorTotal(getValorTotal());
         return dtProducto;
     }
+
 
 }

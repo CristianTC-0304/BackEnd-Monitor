@@ -197,7 +197,7 @@ public class DtProducto implements Serializable {
     }
 
     public Producto getIdProducto() {
-        return idProducto;
+       return idProducto;
     }
 
     public void setIdProducto(Producto idProducto) {

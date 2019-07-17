@@ -57,9 +57,6 @@ public class ProductoDAOImplement implements IProductoDAO {
         return producto;
     }
 
-<<<<<<< HEAD
-   
-=======
->>>>>>> a8ef4be743bc4e7b32f560f7e5c5a834489e82ff
+
 
 }

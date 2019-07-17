@@ -99,14 +99,16 @@ public class ProductoBusinessImplement implements IProductoBusiness {
                     if (StringUtil.isNullOrEmpty(list.get(i).getIddtProducto())) {
 
                         dtProducto = dtProductoDTO.getEntity();
-                        dtProducto.setFechaMovimiento(dtProductoDTO.getFechaMovimiento());
+                      //  dtProducto.setFechaMovimiento(dtProductoDTO.getFechaMovimiento());
                         dtProducto.setIdProducto(new Producto(productoDTO.getEntity().getIdproducto()));
                         dtProductoDAO.ingresarDtProducto(dtProducto);
+                        listDtproductoDto.add(dtProducto.getDTO());
                     } else {
                         dtProducto = dtProductoDTO.getEntity();
-                        dtProducto.setFechaMovimiento(dtProductoDTO.getFechaMovimiento());
+                        //dtProducto.setFechaMovimiento(dtProductoDTO.getFechaMovimiento());
                         dtProducto.setIdProducto(new Producto(productoDTO.getEntity().getIdproducto()));
                         dtProductoDAO.actualizarDtProducto(dtProducto);
+                        listDtproductoDto.add(dtProducto.getDTO());
                     }
                     i++;
                 }
@@ -145,5 +147,19 @@ public class ProductoBusinessImplement implements IProductoBusiness {
             throw new RuntimeException("Producto eliminado correctamente");
         }
 
+    }
+
+    @Override
+    public ProductoDTO buscarProductoPorId(int idProducto) {
+        Producto prod = productoDAO.buscarProductoId(idProducto);
+
+        ProductoDTO productoDTO = prod.getDTO();
+        productoDTO.setListaDtProductoDTO(listaDtProducto(idProducto));
+        try {
+            return productoDTO;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error buscando producto.");
+        }
     }
 }
