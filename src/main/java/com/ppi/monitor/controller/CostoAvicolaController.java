@@ -39,4 +39,17 @@ public class CostoAvicolaController {
         return mensaje;
     }
 
+
+    @RequestMapping(method = RequestMethod.GET, value = "/costoavicola/{idCostoAvicola}")
+    public CostoAvicola buscarCostoAvicolaId(@PathVariable("idCostoAvicola")int idCostoAvicola) {
+        CostoAvicola costoAvicola = costoAvicolaBusiness.buscarCostoAvicolaId(idCostoAvicola);
+        try {
+            return costoAvicola;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error buscando el costo avicola");
+        }
+    }
+
+
 }

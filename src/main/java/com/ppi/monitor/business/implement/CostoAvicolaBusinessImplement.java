@@ -42,5 +42,16 @@ public class CostoAvicolaBusinessImplement implements ICostoAvicolaBusiness {
         }
     }
 
+    @Override
+    public CostoAvicola buscarCostoAvicolaId(int idCostoAvicola) {
+        CostoAvicola costoAvicola = costoAviculaDAO.buscarCostoAviculaId(idCostoAvicola);
+        try {
+            return costoAvicola;
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Error buscando el costo avicola");
+        }
+    }
+
 
 }

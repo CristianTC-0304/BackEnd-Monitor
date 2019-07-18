@@ -14,4 +14,6 @@ public interface IProductoBusiness {
     Producto buscarProducto(String nombreProducto);
 
     void cambiarEstadoProducto(int idProducto);
+
+    ProductoDTO buscarProductoPorId(int idProducto);
 }

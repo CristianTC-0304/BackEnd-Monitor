@@ -126,8 +126,8 @@ public class CostoAvicola implements Serializable {
     @JoinColumn(name = "ave", referencedColumnName = "id_ave")
     @ManyToOne(optional = false)
     private Ave ave;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCostoAvicola")
-    private Collection<DtCostoAvicola> dtCostoAvicolaCollection;
+   // @OneToMany(cascade = CascadeType.ALL, mappedBy = "idCostoAvicola")
+    //private Collection<DtCostoAvicola> dtCostoAvicolaCollection;
 
     public CostoAvicola() {
     }
@@ -326,7 +326,7 @@ public class CostoAvicola implements Serializable {
     public void setAve(Ave ave) {
         this.ave = ave;
     }
-
+/*
     @XmlTransient
     public Collection<DtCostoAvicola> getDtCostoAvicolaCollection() {
         return dtCostoAvicolaCollection;
@@ -334,7 +334,7 @@ public class CostoAvicola implements Serializable {
 
     public void setDtCostoAvicolaCollection(Collection<DtCostoAvicola> dtCostoAvicolaCollection) {
         this.dtCostoAvicolaCollection = dtCostoAvicolaCollection;
-    }
+    }*/
 
     @Override
     public int hashCode() {

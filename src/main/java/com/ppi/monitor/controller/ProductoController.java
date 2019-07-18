@@ -82,4 +82,15 @@ public class ProductoController {
         return mensaje;
     }
 
+    @RequestMapping(method = RequestMethod.GET, value = "/product/{idProducto}")
+    public ProductoDTO buscarProductoPorId(@PathVariable ("idProducto") int idProducto) {
+
+        try {
+            return productoBusiness.buscarProductoPorId(idProducto);
+
+        }catch (Exception e){
+            e.printStackTrace();
+            throw new RuntimeException("Error buscando producto.");
+        }
+    }
 }
