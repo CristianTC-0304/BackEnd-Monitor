@@ -56,7 +56,6 @@ public class ProductoController {
 
     }
 
-<<<<<<< HEAD
     @RequestMapping(method = RequestMethod.DELETE, value = "/producto/{idProducto}")
     public String eliminarMovimiento(@PathVariable("idProducto") int idProducto) {
         try {
@@ -68,22 +67,10 @@ public class ProductoController {
         }
         return mensaje;
     }
-=======
-//    @RequestMapping(method = RequestMethod.PUT, value = "/producto/{idProducto}")
-//    public String eliminarMovimiento(@PathVariable("idProducto") int idProducto) {
-//        try {
-//            productoBusiness.cambiarEstadoProducto(idProducto);
-//            mensaje = "{\"mensaje\":\"producto eliminado correctamente.\"}";
-//        } catch (Exception e) {
-//
-//            throw new RuntimeException("Error eliminando producto.");
-//        }
-//        return mensaje;
-//    }
->>>>>>> a8ef4be743bc4e7b32f560f7e5c5a834489e82ff
+
 
     @RequestMapping(method = RequestMethod.PUT, value = "/producto/{idProducto}")
-    public String cambiarEstadoProducto(@PathVariable("idProducto")int idProducto) {
+    public String cambiarEstadoProducto(@PathVariable("idProducto") int idProducto) {
 
         try {
             productoBusiness.cambiarEstadoProducto(idProducto);

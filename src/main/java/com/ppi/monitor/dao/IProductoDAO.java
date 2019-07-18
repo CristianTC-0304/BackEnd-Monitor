@@ -16,9 +16,4 @@ public interface IProductoDAO {
 
     Producto buscarProducto(String nombreProducto);
 
-<<<<<<< HEAD
-   
-=======
-
->>>>>>> a8ef4be743bc4e7b32f560f7e5c5a834489e82ff
 }
