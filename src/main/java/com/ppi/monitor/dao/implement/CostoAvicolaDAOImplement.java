@@ -32,4 +32,10 @@ public class CostoAvicolaDAOImplement implements ICostoAviculaDAO {
     public void actualizarCostoAvicola(CostoAvicola costoAvicola) {
         entityManager.merge(costoAvicola);
     }
+
+    @Override
+    public CostoAvicola buscarCostoAviculaId(int idCostoAvicola) {
+        CostoAvicola costoAvicola = entityManager.find(CostoAvicola.class,idCostoAvicola);
+        return costoAvicola;
+    }
 }

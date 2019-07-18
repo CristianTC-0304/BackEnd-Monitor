@@ -12,5 +12,7 @@ public interface ICostoAviculaDAO {
 
     void actualizarCostoAvicola(CostoAvicola costoAvicola);
 
+    CostoAvicola buscarCostoAviculaId(int idCostoAvicola);
+
 
 }

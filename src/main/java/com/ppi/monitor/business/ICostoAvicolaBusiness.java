@@ -10,4 +10,6 @@ public interface ICostoAvicolaBusiness {
 
     void ingresarCostoAvicola(CostoAvicola costoAvicola);
 
+    CostoAvicola buscarCostoAvicolaId(int idCostoAvicola);
+
 }

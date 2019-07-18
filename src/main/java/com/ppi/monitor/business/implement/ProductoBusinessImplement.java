@@ -16,6 +16,7 @@ import java.math.MathContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -91,7 +92,7 @@ public class ProductoBusinessImplement implements IProductoBusiness {
     private List<DtProductoDTO> ingresoDtProducto(List<DtProductoDTO> list, ProductoDTO productoDTO) {
         List<DtProductoDTO> listDtproductoDto = new ArrayList<>();
         DtProducto dtProducto;
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+
         try {
             if (list.size() > 0) {
                 int i = 0;
@@ -99,13 +100,13 @@ public class ProductoBusinessImplement implements IProductoBusiness {
                     if (StringUtil.isNullOrEmpty(list.get(i).getIddtProducto())) {
 
                         dtProducto = dtProductoDTO.getEntity();
-                      //  dtProducto.setFechaMovimiento(dtProductoDTO.getFechaMovimiento());
                         dtProducto.setIdProducto(new Producto(productoDTO.getEntity().getIdproducto()));
+
                         dtProductoDAO.ingresarDtProducto(dtProducto);
                         listDtproductoDto.add(dtProducto.getDTO());
                     } else {
                         dtProducto = dtProductoDTO.getEntity();
-                        //dtProducto.setFechaMovimiento(dtProductoDTO.getFechaMovimiento());
+
                         dtProducto.setIdProducto(new Producto(productoDTO.getEntity().getIdproducto()));
                         dtProductoDAO.actualizarDtProducto(dtProducto);
                         listDtproductoDto.add(dtProducto.getDTO());
