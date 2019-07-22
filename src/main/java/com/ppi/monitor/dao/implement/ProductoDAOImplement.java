@@ -39,7 +39,7 @@ public class ProductoDAOImplement implements IProductoDAO {
     @Override
     public Producto buscarProductoId(int idProducto) {
 
-        return entityManager.find(Producto.class,idProducto);
+        return entityManager.find(Producto.class, idProducto);
     }
 
     @Override
@@ -56,7 +56,4 @@ public class ProductoDAOImplement implements IProductoDAO {
         }
         return producto;
     }
-
-
-
 }

@@ -16,8 +16,7 @@ public class MonitorApplication {
         SpringApplication.run(MonitorApplication.class, args);
 
 
-       FileInputStream serviceAccount = new FileInputStream("src/main/resources/sensoriotppi.json");
-
+        FileInputStream serviceAccount = new FileInputStream("src/main/resources/sensoriotppi.json");
 
 
         try {
@@ -32,7 +31,6 @@ public class MonitorApplication {
         }
 
 
-       
     }
 
 }

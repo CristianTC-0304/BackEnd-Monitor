@@ -70,7 +70,7 @@ public class ProductoController {
 
 
     @RequestMapping(method = RequestMethod.PUT, value = "/producto/{idProducto}")
-    public String cambiarEstadoProducto(@PathVariable("idProducto")int idProducto) {
+    public String cambiarEstadoProducto(@PathVariable("idProducto") int idProducto) {
 
         try {
             productoBusiness.cambiarEstadoProducto(idProducto);
