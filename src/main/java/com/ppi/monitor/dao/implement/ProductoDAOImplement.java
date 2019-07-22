@@ -28,7 +28,7 @@ public class ProductoDAOImplement implements IProductoDAO {
     public void crearProducto(Producto producto) {
         entityManager.persist(producto);
     }
-
+// esto es una prueba
 
     @Override
     @Transactional
