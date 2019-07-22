@@ -19,7 +19,7 @@ public class ProductoDAOImplement implements IProductoDAO {
     @Override
     public List<Producto> listaProducto(int idtipoProducto) {
 
-        return entityManager.createNativeQuery("SELECT * FROM Producto WHERE id_tipo_producto = '" + idtipoProducto + "'", Producto.class)
+        return entityManager.createNativeQuery("SELECT * FROM producto WHERE id_tipo_producto = '" + idtipoProducto + "'", Producto.class)
                 .getResultList();
     }
 
