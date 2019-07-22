@@ -47,6 +47,7 @@ public class SalarioBusinessImplement implements ISalarioBusiness {
                 salarioActual.setPeriodo(salario.getPeriodo().substring(0, 4));
                 salarioDAO.crearSalario(salarioActual);
             } else {
+                salarioActual.setPeriodo(salario.getPeriodo().substring(0, 4));
                 salarioDAO.actualizarSalario(salario);
             }
         } catch (Exception e) {
